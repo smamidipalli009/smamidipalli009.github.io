@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siva Mamidipalli — DevOps & Cloud Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0e17;--bg2:#0d1220;--bg3:#111827;--panel:#0f1623;
+  --border:#1e2d3d;--border2:#243447;
+  --cyan:#00d4ff;--green:#00ff88;--amber:#ffb347;--red:#ff4757;
+  --text:#e2e8f0;--text2:#8892a4;--text3:#4a5568;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+::selection{background:rgba(0,212,255,0.2);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(10,14,23,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cyan);display:flex;align-items:center;gap:8px;}
+.nav-pulse{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);transition:color 0.2s;letter-spacing:0.05em;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);display:flex;align-items:center;gap:6px;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+
+/* CANVAS */
+#topo{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.15;pointer-events:none;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 2.5rem 4rem;position:relative;z-index:1;max-width:1200px;margin:0 auto;gap:4rem;}
+.hero-left{flex:1;max-width:620px;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px;letter-spacing:0.1em;}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--cyan);}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.1;margin-bottom:1rem;color:#fff;}
+.hero h1 .accent{color:var(--cyan);}
+.typewriter{font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--green);margin-bottom:1.5rem;min-height:1.6rem;}
+.cursor{animation:blink 0.8s step-end infinite;}
+.hero-desc{font-size:15px;color:var(--text2);max-width:520px;margin-bottom:2rem;line-height:1.8;}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;}
+.mbox{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;position:relative;overflow:hidden;}
+.mbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.mbox.c::before{background:var(--cyan);}
+.mbox.g::before{background:var(--green);}
+.mbox.a::before{background:var(--amber);}
+.mbox.p::before{background:#7c3aed;}
+.mval{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:600;color:#fff;}
+.mlabel{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn{padding:10px 24px;border-radius:6px;font-size:13px;font-weight:500;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;transition:all 0.2s;cursor:pointer;border:none;display:inline-block;}
+.btn-p{background:var(--cyan);color:#0a0e17;}
+.btn-p:hover{background:#00b8d9;transform:translateY(-1px);}
+.btn-o{background:transparent;color:var(--cyan);border:1px solid var(--cyan);}
+.btn-o:hover{background:rgba(0,212,255,0.08);}
+
+/* DASHBOARD */
+.hero-right{flex-shrink:0;}
+.dash{background:var(--panel);border:1px solid var(--border);border-radius:12px;width:340px;overflow:hidden;}
+.dash-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:6px;}
+.ddot{width:10px;height:10px;border-radius:50%;}
+.dash-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);margin-left:auto;}
+.dash-body{padding:14px;}
+.drow{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px;}
+.drow:last-of-type{border-bottom:none;}
+.dkey{color:var(--text2);}
+.dval{color:var(--green);}
+.dval.c{color:var(--cyan);}
+.dval.a{color:var(--amber);}
+.brow{padding:7px 0;}
+.blabel{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);margin-bottom:4px;}
+.btrack{height:4px;background:var(--border);border-radius:2px;}
+.bfill{height:4px;border-radius:2px;}
+.spark{display:flex;align-items:flex-end;gap:2px;height:22px;margin-top:8px;}
+.sb{width:6px;background:var(--cyan);border-radius:1px;opacity:0.5;}
+
+/* SECTIONS */
+section{padding:5rem 2.5rem;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.slabel{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem;display:flex;align-items:center;gap:10px;}
+.slabel::before{content:'';width:20px;height:1px;background:var(--cyan);}
+.stitle{font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:#fff;margin-bottom:2.5rem;}
+.divline{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.about-text p{color:var(--text2);font-size:15px;margin-bottom:1rem;line-height:1.8;}
+.apanels{display:flex;flex-direction:column;gap:1rem;}
+.apanel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;border-left:2px solid var(--cyan);}
+.apanel.g{border-left-color:var(--green);}
+.apanel.a{border-left-color:var(--amber);}
+.apanel.p{border-left-color:#7c3aed;}
+.apanel h4{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);margin-bottom:4px;}
+.apanel.g h4{color:var(--green);}
+.apanel.a h4{color:var(--amber);}
+.apanel.p h4{color:#a78bfa;}
+.apanel p{font-size:13px;color:var(--text2);}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:160px;}
+.tline{position:absolute;left:124px;top:0;bottom:0;width:1px;background:repeating-linear-gradient(to bottom,var(--border) 0,var(--border) 8px,transparent 8px,transparent 16px);}
+.titem{position:relative;margin-bottom:2rem;}
+.tdate{position:absolute;left:-160px;top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);text-align:right;width:128px;}
+.tnode{position:absolute;left:-36px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;z-index:1;}
+.tnode::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--cyan);}
+.tcard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;transition:border-color 0.2s;}
+.tcard:hover{border-color:var(--border2);}
+.tcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;margin-bottom:0.75rem;flex-wrap:wrap;}
+.trole{font-size:15px;font-weight:600;color:#fff;}
+.tcompany{font-size:13px;color:var(--cyan);margin-top:2px;}
+.tbadge{font-family:'JetBrains Mono',monospace;font-size:10px;background:rgba(0,212,255,0.08);color:var(--cyan);border:1px solid rgba(0,212,255,0.2);border-radius:4px;padding:3px 8px;white-space:nowrap;}
+.tbullets{list-style:none;}
+.tbullets li{font-size:13px;color:var(--text2);padding:3px 0 3px 1rem;position:relative;line-height:1.6;}
+.tbullets li::before{content:'›';position:absolute;left:0;color:var(--green);font-size:14px;}
+
+/* PROJECTS */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.pcard{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.25s,transform 0.25s;position:relative;overflow:hidden;}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--cyan),transparent);opacity:0;transition:opacity 0.3s;}
+.pcard:hover{border-color:var(--border2);transform:translateY(-3px);}
+.pcard:hover::before{opacity:1;}
+.pcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;}
+.pid{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);}
+.pstatus{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--green);display:flex;align-items:center;gap:4px;}
+.pstatus::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+.pstatus.wip{color:var(--amber);}
+.pstatus.wip::before{background:var(--amber);}
+.ptitle{font-size:15px;font-weight:600;color:#fff;margin-bottom:0.5rem;}
+.pdesc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:1rem;}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem;}
+.ptag{font-family:'JetBrains Mono',monospace;font-size:10px;background:rgba(0,212,255,0.06);color:var(--cyan);border:1px solid rgba(0,212,255,0.15);border-radius:3px;padding:2px 7px;}
+.pimpact{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);border-top:1px solid var(--border);padding-top:0.75rem;}
+.pimpact.a{color:var(--amber);}
+
+/* SKILLS */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;}
+.spanel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
+.spanel-hdr{display:flex;align-items:center;gap:8px;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.spanel-title{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:11px;color:var(--text2);font-family:'JetBrains Mono',monospace;transition:border-color 0.2s,color 0.2s;}
+.chip:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* EDUCATION */
+.egrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.ecard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.5rem;position:relative;overflow:hidden;}
+.ecard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--cyan),var(--green));}
+.eschool{font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;}
+.edeg{font-size:13px;color:var(--text2);margin-bottom:6px;}
+.emeta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);}
+.egpa{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);border-radius:4px;padding:3px 10px;}
+.egpa.muted{color:var(--text2);background:rgba(255,255,255,0.04);border-color:var(--border);}
+
+/* AWARDS */
+.agrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.acard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;gap:1rem;}
+.aicon{font-size:22px;flex-shrink:0;}
+.atitle{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px;}
+.aorg{font-size:12px;color:var(--text2);}
+
+/* CONTACT */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.cblurb p{color:var(--text2);font-size:15px;margin-bottom:1rem;line-height:1.8;}
+.clinks{display:flex;flex-direction:column;gap:1rem;}
+.clink{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem 1.25rem;transition:border-color 0.2s;}
+.clink:hover{border-color:var(--cyan);}
+.cicon{font-size:18px;color:var(--cyan);width:24px;text-align:center;}
+.clabel{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;}
+.cval{font-size:13px;color:var(--text);}
+
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);position:relative;z-index:1;}
+
+/* FADE */
+.fu{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fu.vis{opacity:1;transform:translateY(0);}
+
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+@keyframes blink{50%{opacity:0;}}
+
+@media(max-width:900px){
+  .hero{flex-direction:column;gap:2rem;padding:80px 1.5rem 3rem;}
+  .hero-right{display:none;}
+  .metrics{grid-template-columns:repeat(2,1fr);}
+  section{padding:3.5rem 1.5rem;}
+  .about-grid,.cgrid{grid-template-columns:1fr;}
+  .timeline{padding-left:2rem;}
+  .tdate,.tline{display:none;}
+  .tnode{left:-1.5rem;}
+  nav{padding:0 1.25rem;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="topo"></canvas>
+
+<nav>
+  <div class="nav-logo"><div class="nav-pulse"></div>siva.mamidipalli.io</div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <div class="nav-status"><div class="status-dot"></div>systems_operational</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Senior DevOps &amp; Cloud Security Engineer</div>
+    <h1>Siva<br><span class="accent">Mamidipalli</span></h1>
+    <div class="typewriter" id="tw"><span class="cursor">█</span></div>
+    <p class="hero-desc">11+ years engineering resilient infrastructure, securing CI/CD pipelines, and leading DevSecOps transformations across banking, retail, and aviation — from bare-metal datacenters to multi-cloud at scale.</p>
+    <div class="metrics">
+      <div class="mbox c"><div class="mval">11+</div><div class="mlabel">Yrs experience</div></div>
+      <div class="mbox g"><div class="mval">99.9%</div><div class="mlabel">Uptime</div></div>
+      <div class="mbox a"><div class="mval">−90%</div><div class="mlabel">Manual effort</div></div>
+      <div class="mbox p"><div class="mval">4.0</div><div class="mlabel">GPA · NEU</div></div>
+    </div>
+    <div class="btns">
+      <a href="#contact" class="btn btn-p">get_in_touch()</a>
+      <a href="#experience" class="btn btn-o">view_experience()</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="dash">
+      <div class="dash-hdr">
+        <div class="ddot" style="background:#ff5f57"></div>
+        <div class="ddot" style="background:#febc2e"></div>
+        <div class="ddot" style="background:#28c840"></div>
+        <div class="dash-title">infra_monitor.sh</div>
+      </div>
+      <div class="dash-body">
+        <div class="drow"><span class="dkey">prod_uptime</span><span class="dval">99.9% ↑</span></div>
+        <div class="drow"><span class="dkey">pipeline_status</span><span class="dval c">PASSING</span></div>
+        <div class="drow"><span class="dkey">critical_vulns</span><span class="dval">0 ✓</span></div>
+        <div class="drow"><span class="dkey">p1_incidents</span><span class="dval a">resolved</span></div>
+        <div class="drow"><span class="dkey">dr_drill</span><span class="dval">RTO/RPO ✓</span></div>
+        <div class="drow"><span class="dkey">envs_managed</span><span class="dval c">30+ clouds</span></div>
+        <div class="brow">
+          <div class="blabel"><span>automation_coverage</span><span style="color:var(--green)">90%</span></div>
+          <div class="btrack"><div class="bfill" style="width:90%;background:var(--green);"></div></div>
+        </div>
+        <div class="brow">
+          <div class="blabel"><span>security_posture</span><span style="color:var(--cyan)">95%</span></div>
+          <div class="btrack"><div class="bfill" style="width:95%;background:var(--cyan);"></div></div>
+        </div>
+        <div class="brow">
+          <div class="blabel"><span>pipeline_health</span><span style="color:var(--amber)">98%</span></div>
+          <div class="btrack"><div class="bfill" style="width:98%;background:var(--amber);"></div></div>
+        </div>
+        <div class="spark">
+          <div class="sb" style="height:35%"></div><div class="sb" style="height:55%"></div>
+          <div class="sb" style="height:42%"></div><div class="sb" style="height:75%"></div>
+          <div class="sb" style="height:50%"></div><div class="sb" style="height:88%"></div>
+          <div class="sb" style="height:65%"></div>
+          <div class="sb" style="height:100%;opacity:1;background:var(--green);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divline"></div>
+
+<section id="about">
+  <div class="slabel fu">01 // about</div>
+  <div class="stitle fu">Who I am</div>
+  <div class="about-grid fu">
+    <div class="about-text">
+      <p>I'm a Senior DevOps Engineer who has spent 11+ years in the trenches of complex IT — owning P1 incidents end-to-end, building secure pipelines from scratch, mentoring distributed teams, and architecting infrastructure that doesn't sleep.</p>
+      <p>My work spans mission-critical environments at Fastenal, FIS, Southwest Airlines, and Hewlett Packard — from VISA payment datacenter racks to AWS cloud migrations for core banking platforms.</p>
+      <p>Currently pursuing an MPS in Informatics at Northeastern University (Boston, MA) with a 4.0 GPA. My capstone explores AI-driven infrastructure intelligence — integrating Claude AI with DevOps observability pipelines to surface actionable insights from operational telemetry.</p>
+    </div>
+    <div class="apanels">
+      <div class="apanel"><h4>// DevSecOps</h4><p>SAST, SCA, DAST integrated into pipelines across Java, .NET, PHP, Node.js. Zero critical findings across all SOX/PCI audits.</p></div>
+      <div class="apanel g"><h4>// Cloud Architecture</h4><p>30+ production environments across AWS, Azure, and hybrid on-prem with full observability and quarterly DR coverage.</p></div>
+      <div class="apanel a"><h4>// Automation</h4><p>Python and Bash pipelines cut manual security overhead by 70% and operational effort by 90% across all environments.</p></div>
+      <div class="apanel p"><h4>// Leadership</h4><p>Led 10-member distributed DevOps teams delivering Ecommerce, Retail, and Vending Machine platforms end-to-end.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="experience">
+  <div class="slabel fu">02 // experience</div>
+  <div class="stitle fu">Career timeline</div>
+  <div class="timeline fu">
+    <div class="tline"></div>
+
+    <div class="titem">
+      <div class="tdate">Aug 2019 – Nov 2024</div>
+      <div class="tnode"></div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div><div class="trole">IT Senior DevOps Engineer</div><div class="tcompany">Fastenal — Bangalore, India</div></div>
+          <div class="tbadge">5 yrs · DevSecOps</div>
+        </div>
+        <ul class="tbullets">
+          <li>End-to-end DevSecOps automation across cloud and hybrid infrastructure — IAM, SSL, DNS, WAF, CDN, APIM, SOX/PCI compliance</li>
+          <li>Integrated SAST (Coverity, SonarQube) and SCA/DAST into CI/CD; zero critical findings across all audits</li>
+          <li>Python/Bash automation reduced manual security overhead by 70% and operational effort by 90%</li>
+          <li>Led 10-member team delivering Ecommerce, Retail, and Vending Machine platforms from kickoff to production</li>
+          <li>24/7 production operations at 99.9% uptime; owned P1 incidents via PagerDuty; zero DR drill failures</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titem">
+      <div class="tdate">Nov 2018 – Jun 2019</div>
+      <div class="tnode"></div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div><div class="trole">Senior Systems Engineer</div><div class="tcompany">FIS (Fidelity Information Services) — Bangalore, India</div></div>
+          <div class="tbadge">8 mo · Cloud Migration</div>
+        </div>
+        <ul class="tbullets">
+          <li>Architected AWS cloud migration for core banking from scratch — multi-tier VPC, RDS Multi-AZ, ElastiCache, ELB, VPN</li>
+          <li>Established PCI-DSS compliance baseline with CloudTrail, IAM, encryption at rest/transit, and S3 lifecycle controls</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titem">
+      <div class="tdate">Feb 2016 – Oct 2018</div>
+      <div class="tnode"></div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div><div class="trole">Technical Specialist</div><div class="tcompany">Softtek · Client: Southwest Airlines — Bangalore, India</div></div>
+          <div class="tbadge">2.5 yrs · Airline Infra</div>
+        </div>
+        <ul class="tbullets">
+          <li>24/7 operations for enterprise Java infrastructure (LoneStar) — WebSphere, Tomcat, F5 BIG-IP blue/green deployments</li>
+          <li>TIBCO BW/EMS and IBM MQ HA clusters; CyberArk credential fetching; Venafi SSL lifecycle; JVM tuning via Grafana</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titem">
+      <div class="tdate">Aug 2014 – Oct 2015</div>
+      <div class="tnode"></div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div><div class="trole">Software Engineer</div><div class="tcompany">Hewlett Packard — Bangalore, India</div></div>
+          <div class="tbadge">1 yr · VMware / RHEL</div>
+        </div>
+        <ul class="tbullets">
+          <li>Administered 1000+ VMs on RHEL with SELinux, firewall rules, kernel tuning, and patching at scale</li>
+          <li>VMware ESXi/vCenter HA/DRS, vMotion live migrations, SAN/NAS storage administration</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="titem">
+      <div class="tdate">Dec 2013 – Aug 2014</div>
+      <div class="tnode"></div>
+      <div class="tcard">
+        <div class="tcard-top">
+          <div><div class="trole">System Administrator</div><div class="tcompany">Adduri Technologies · Client: VISA Payment Gateway — Chennai, India</div></div>
+          <div class="tbadge">8 mo · Datacenter</div>
+        </div>
+        <ul class="tbullets">
+          <li>Mission-critical VISA payment datacenter: rack &amp; stack, FC/iSCSI SAN zoning, RAID, VTL backup, firmware management</li>
+          <li>OS hardening on Linux/Windows; Brocade switches, Fortigate firewalls, F5 BIG-IP load balancers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="projects">
+  <div class="slabel fu">03 // projects</div>
+  <div class="stitle fu">Key initiatives</div>
+  <div class="pgrid fu">
+    <div class="pcard">
+      <div class="pcard-top"><div class="pid">PRJ-001 · Fastenal</div><div class="pstatus">deployed</div></div>
+      <div class="ptitle">DevSecOps Pipeline Automation</div>
+      <div class="pdesc">Built Python and Bash automation for Tenable.io scan triggers, vulnerability ingestion pipelines, and SAST/SCA result aggregation — eliminating manual security workflows across Dev, QA, UAT, and Prod.</div>
+      <div class="ptags"><span class="ptag">Python</span><span class="ptag">Bash</span><span class="ptag">Jenkins</span><span class="ptag">Tenable.io</span><span class="ptag">SonarQube</span><span class="ptag">RiskSense</span></div>
+      <div class="pimpact">↓ 70% manual security overhead · zero audit findings</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pid">PRJ-002 · Fastenal</div><div class="pstatus">deployed</div></div>
+      <div class="ptitle">Multi-Cloud Production Infrastructure</div>
+      <div class="pdesc">Architected 30+ production environments across AWS, Azure, and on-prem. Full observability via AppDynamics and ELK. Automated 50+ operations including SSL renewals and Oracle upgrades (10c → 19c) via Ansible.</div>
+      <div class="ptags"><span class="ptag">AWS</span><span class="ptag">Azure</span><span class="ptag">Terraform</span><span class="ptag">Ansible</span><span class="ptag">AppDynamics</span><span class="ptag">ELK</span></div>
+      <div class="pimpact">99.9% uptime · −90% operational manual effort</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pid">PRJ-003 · FIS</div><div class="pstatus">deployed</div></div>
+      <div class="ptitle">Core Banking AWS Migration</div>
+      <div class="pdesc">Full AWS migration strategy for a core banking platform — multi-tier VPC across AZs, RDS Multi-AZ with encryption, ElastiCache Redis, bastion hosts, and complete PCI-DSS compliance blueprint with CloudTrail auditing.</div>
+      <div class="ptags"><span class="ptag">AWS VPC</span><span class="ptag">RDS</span><span class="ptag">ElastiCache</span><span class="ptag">CloudTrail</span><span class="ptag">PCI-DSS</span></div>
+      <div class="pimpact">Full PCI-DSS compliance · zero-downtime migration</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pid">PRJ-004 · Southwest Airlines</div><div class="pstatus">deployed</div></div>
+      <div class="ptitle">LoneStar Enterprise Java Platform</div>
+      <div class="pdesc">24/7 airline infrastructure operations. Blue/green deployments via F5 BIG-IP, CyberArk credential fetching, Venafi SSL lifecycle, JVM tuning, and TIBCO/IBM MQ HA clustering with SSL/TLS messaging.</div>
+      <div class="ptags"><span class="ptag">F5 BIG-IP</span><span class="ptag">CyberArk</span><span class="ptag">TIBCO</span><span class="ptag">IBM MQ</span><span class="ptag">Grafana</span><span class="ptag">Venafi</span></div>
+      <div class="pimpact">Zero-downtime blue/green in airline production</div>
+    </div>
+    <div class="pcard">
+      <div class="pcard-top"><div class="pid">PRJ-005 · Northeastern University</div><div class="pstatus wip">in progress</div></div>
+      <div class="ptitle">AI-Driven Infrastructure Intelligence</div>
+      <div class="pdesc">MPS Capstone — integrating Claude AI with DevOps observability pipelines to surface actionable insights from infrastructure telemetry. Explores LLMs augmenting incident response, anomaly detection, and cloud operational decision-making.</div>
+      <div class="ptags"><span class="ptag">Claude AI</span><span class="ptag">Python</span><span class="ptag">Observability</span><span class="ptag">Cloud</span><span class="ptag">Informatics</span></div>
+      <div class="pimpact a">MPS Capstone · Northeastern University · 2025–2026</div>
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="skills">
+  <div class="slabel fu">04 // skills</div>
+  <div class="stitle fu">Technical stack</div>
+  <div class="sgrid fu">
+    <div class="spanel">
+      <div class="spanel-hdr"><span>🔒</span><span class="spanel-title">application_security</span></div>
+      <div class="chips"><span class="chip">SAST</span><span class="chip">SCA</span><span class="chip">DAST</span><span class="chip">Coverity</span><span class="chip">SonarQube</span><span class="chip">Tenable.io</span><span class="chip">RiskSense</span><span class="chip">Trivy</span><span class="chip">PCI-DSS</span><span class="chip">SOX</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>⚙️</span><span class="spanel-title">ci_cd_devsecops</span></div>
+      <div class="chips"><span class="chip">Jenkins</span><span class="chip">TeamCity</span><span class="chip">GitHub Actions</span><span class="chip">Azure DevOps</span><span class="chip">GitLab</span><span class="chip">Octopus Deploy</span><span class="chip">Bitbucket</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>☁️</span><span class="spanel-title">cloud_infrastructure</span></div>
+      <div class="chips"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">Terraform</span><span class="chip">Ansible</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">VMware vSphere</span><span class="chip">ESXi</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>🌐</span><span class="spanel-title">networking_security</span></div>
+      <div class="chips"><span class="chip">F5 BIG-IP GTM/LTM</span><span class="chip">Akamai WAF/CDN</span><span class="chip">CyberArk</span><span class="chip">Venafi</span><span class="chip">Zero Trust</span><span class="chip">SSL/TLS</span><span class="chip">DNS</span><span class="chip">VPN</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>🔗</span><span class="spanel-title">middleware_integration</span></div>
+      <div class="chips"><span class="chip">MuleSoft</span><span class="chip">TIBCO BW/EMS</span><span class="chip">IBM MQ</span><span class="chip">Kafka</span><span class="chip">JBoss</span><span class="chip">Tomcat</span><span class="chip">WebSphere</span><span class="chip">WebLogic</span><span class="chip">NGINX</span><span class="chip">IIS</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>📊</span><span class="spanel-title">observability_data</span></div>
+      <div class="chips"><span class="chip">AppDynamics</span><span class="chip">LogicMonitor</span><span class="chip">ELK Stack</span><span class="chip">PagerDuty</span><span class="chip">Grafana</span><span class="chip">Oracle</span><span class="chip">Snowflake</span><span class="chip">Tableau</span><span class="chip">Power BI</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>💻</span><span class="spanel-title">scripting_languages</span></div>
+      <div class="chips"><span class="chip">Python</span><span class="chip">Bash</span><span class="chip">PowerShell</span><span class="chip">Java</span><span class="chip">.NET</span><span class="chip">Node.js</span><span class="chip">PHP</span></div>
+    </div>
+    <div class="spanel">
+      <div class="spanel-hdr"><span>🛠️</span><span class="spanel-title">itsm_build_tools</span></div>
+      <div class="chips"><span class="chip">ServiceNow</span><span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Nexus</span><span class="chip">Maven</span><span class="chip">npm</span><span class="chip">MSBuild</span><span class="chip">Liquibase</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="education">
+  <div class="slabel fu">05 // education</div>
+  <div class="stitle fu">Academic background</div>
+  <div class="egrid fu">
+    <div class="ecard">
+      <div class="eschool">Northeastern University</div>
+      <div class="edeg">Master of Professional Studies (MPS) in Informatics</div>
+      <div class="emeta">Boston, MA &nbsp;·&nbsp; Jul 2025 – Jun 2026</div>
+      <div class="egpa">GPA: 4.0 / 4.0</div>
+    </div>
+    <div class="ecard">
+      <div class="eschool">Sanketika Vidya Parishad Engineering College</div>
+      <div class="edeg">B.E. in Electrical and Electronics — Andhra University</div>
+      <div class="emeta">India &nbsp;·&nbsp; Sep 2007 – Jun 2011</div>
+      <div class="egpa muted">CGPA: 6.82 / 10</div>
+    </div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="awards">
+  <div class="slabel fu">06 // recognition</div>
+  <div class="stitle fu">Awards &amp; achievements</div>
+  <div class="agrid fu">
+    <div class="acard"><div class="aicon">🏆</div><div><div class="atitle">Multiple Spot Awards</div><div class="aorg">Fastenal India · 2019 – 2024</div></div></div>
+    <div class="acard"><div class="aicon">⭐</div><div><div class="atitle">All-Star Award Nomination</div><div class="aorg">Softtek / Southwest Airlines · 2016 – 2018</div></div></div>
+    <div class="acard"><div class="aicon">🎖️</div><div><div class="atitle">Extraordinary Service Award</div><div class="aorg">Softtek / Southwest Airlines · 2016 – 2018</div></div></div>
+    <div class="acard"><div class="aicon">🥇</div><div><div class="atitle">Best Employee of the Month</div><div class="aorg">Hewlett Packard · 2014 – 2015</div></div></div>
+  </div>
+</section>
+
+<div class="divline"></div>
+
+<section id="contact">
+  <div class="slabel fu">07 // contact</div>
+  <div class="stitle fu">Get in touch</div>
+  <div class="cgrid fu">
+    <div class="cblurb">
+      <p>Open to senior DevOps, DevSecOps, and cloud infrastructure roles — as well as consulting in security automation and cloud architecture.</p>
+      <p>Based in Boston, MA. Reach out via email or connect on LinkedIn.</p>
+    </div>
+    <div class="clinks">
+      <a class="clink" href="mailto:mamidipalli.si@northeastern.edu">
+        <span class="cicon">✉</span>
+        <div><div class="clabel">email</div><div class="cval">mamidipalli.si@northeastern.edu</div></div>
+      </a>
+      <a class="clink" href="https://www.linkedin.com/in/siva-mamidipalli" target="_blank">
+        <span class="cicon">🔗</span>
+        <div><div class="clabel">linkedin</div><div class="cval">linkedin.com/in/siva-mamidipalli</div></div>
+      </a>
+      <a class="clink" href="tel:6174486433">
+        <span class="cicon">📞</span>
+        <div><div class="clabel">phone</div><div class="cval">(617) 448-6433</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>built with HTML · CSS · JS &nbsp;·&nbsp; hosted on GitHub Pages &nbsp;·&nbsp; © 2026 Siva Mamidipalli</footer>
+
+<script>
+/* TOPOLOGY NETWORK */
+const canvas=document.getElementById('topo');
+const ctx=canvas.getContext('2d');
+let nodes=[],W,H;
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;initNodes();}
+function initNodes(){
+  nodes=[];
+  const n=Math.floor(W*H/20000);
+  for(let i=0;i<n;i++) nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,r:Math.random()*1.5+0.5});
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  for(let i=0;i<nodes.length;i++){
+    const n=nodes[i];
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>W) n.vx*=-1;
+    if(n.y<0||n.y>H) n.vy*=-1;
+    ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle='#00d4ff';ctx.fill();
+    for(let j=i+1;j<nodes.length;j++){
+      const m=nodes[j];
+      const dx=n.x-m.x,dy=n.y-m.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){
+        ctx.beginPath();ctx.moveTo(n.x,n.y);ctx.lineTo(m.x,m.y);
+        ctx.strokeStyle=`rgba(0,212,255,${(1-d/130)*0.4})`;ctx.lineWidth=0.5;ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+window.addEventListener('resize',resize);
+resize();draw();
+
+/* TYPEWRITER */
+const phrases=['Senior DevOps Engineer','Cloud Architect','DevSecOps Lead','Infrastructure Engineer','Site Reliability Engineer'];
+let pi=0,ci=0,del=false,el=document.getElementById('tw');
+function type(){
+  const p=phrases[pi];
+  if(!del){ci++;el.innerHTML=p.slice(0,ci)+'<span class="cursor">█</span>';
+    if(ci===p.length){del=true;setTimeout(type,1800);return;}
+  }else{ci--;el.innerHTML=p.slice(0,ci)+'<span class="cursor">█</span>';
+    if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(type,400);return;}
+  }
+  setTimeout(type,del?38:68);
+}
+type();
+
+/* SCROLL FADE */
+const obs=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('vis');});},{threshold:0.08});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
