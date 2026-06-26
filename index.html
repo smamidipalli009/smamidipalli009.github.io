@@ -209,6 +209,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
     <li><a href="#skills">skills</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
+  <a href="resume.pdf" download="Siva_Mamidipalli_Resume.pdf" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 14px;border:1px solid var(--cyan);border-radius:5px;color:var(--cyan);transition:all 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.1)'" onmouseout="this.style.background='transparent'">↓ resume</a>
   <div class="nav-status"><div class="status-dot"></div>systems_operational</div>
 </nav>
 
@@ -238,24 +239,15 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
         <div class="dash-title">infra_monitor.sh</div>
       </div>
       <div class="dash-body">
-        <div class="drow"><span class="dkey">prod_uptime</span><span class="dval">99.9% ↑</span></div>
-        <div class="drow"><span class="dkey">pipeline_status</span><span class="dval c">PASSING</span></div>
-        <div class="drow"><span class="dkey">critical_vulns</span><span class="dval">0 ✓</span></div>
-        <div class="drow"><span class="dkey">p1_incidents</span><span class="dval a">resolved</span></div>
-        <div class="drow"><span class="dkey">dr_drill</span><span class="dval">RTO/RPO ✓</span></div>
-        <div class="drow"><span class="dkey">envs_managed</span><span class="dval c">30+ clouds</span></div>
-        <div class="brow">
-          <div class="blabel"><span>automation_coverage</span><span style="color:var(--green)">90%</span></div>
-          <div class="btrack"><div class="bfill" style="width:90%;background:var(--green);"></div></div>
-        </div>
-        <div class="brow">
-          <div class="blabel"><span>security_posture</span><span style="color:var(--cyan)">95%</span></div>
-          <div class="btrack"><div class="bfill" style="width:95%;background:var(--cyan);"></div></div>
-        </div>
-        <div class="brow">
-          <div class="blabel"><span>pipeline_health</span><span style="color:var(--amber)">98%</span></div>
-          <div class="btrack"><div class="bfill" style="width:98%;background:var(--amber);"></div></div>
-        </div>
+        <div class="drow"><span class="dkey">prod_availability</span><span class="dval">99.9% · 5 yrs</span></div>
+        <div class="drow"><span class="dkey">mttr_avg</span><span class="dval c">&lt; 15 min · P1 owned</span></div>
+        <div class="drow"><span class="dkey">dr_drills</span><span class="dval">100% passed ✓</span></div>
+        <div class="drow"><span class="dkey">ops_automated</span><span class="dval c">50+ · −90% effort</span></div>
+        <div class="drow"><span class="dkey">infra_scale</span><span class="dval">30+ envs · 1000+ VMs</span></div>
+        <div class="drow"><span class="dkey">cloud_migration</span><span class="dval c">AWS · Azure · on-prem</span></div>
+        <div class="drow"><span class="dkey">security_compliance</span><span class="dval">0 findings · SOX/PCI</span></div>
+        <div class="drow"><span class="dkey">team_led</span><span class="dval a">10 engineers · 3 platforms</span></div>
+
         <div class="spark">
           <div class="sb" style="height:35%"></div><div class="sb" style="height:55%"></div>
           <div class="sb" style="height:42%"></div><div class="sb" style="height:75%"></div>
@@ -412,9 +404,9 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
     </div>
     <div class="pcard">
       <div class="pcard-top"><div class="pid">PRJ-005 · Northeastern University</div><div class="pstatus wip">in progress</div></div>
-      <div class="ptitle">AI-Driven Infrastructure Intelligence</div>
-      <div class="pdesc">MPS Capstone — integrating Claude AI with DevOps observability pipelines to surface actionable insights from infrastructure telemetry. Explores LLMs augmenting incident response, anomaly detection, and cloud operational decision-making.</div>
-      <div class="ptags"><span class="ptag">Claude AI</span><span class="ptag">Python</span><span class="ptag">Observability</span><span class="ptag">Cloud</span><span class="ptag">Informatics</span></div>
+      <div class="ptitle">MPS Capstone — AI-Driven Infrastructure Intelligence</div>
+      <div class="pdesc">Developed an automated enterprise AI evaluation pipeline integrating multiple LLM APIs with end-to-end GitHub Actions automation for an industry-sponsored research initiative at Northeastern University. Built a configurable scoring architecture using semantic similarity matching and structured output parsing, delivering research-ready results across multiple evaluation passes and stakeholders.</div>
+      <div class="ptags"><span class="ptag">LLM APIs</span><span class="ptag">GitHub Actions</span><span class="ptag">Python</span><span class="ptag">Semantic Similarity</span><span class="ptag">Structured Output</span><span class="ptag">Informatics</span></div>
       <div class="pimpact a">MPS Capstone · Northeastern University · 2025–2026</div>
     </div>
   </div>
@@ -559,7 +551,7 @@ window.addEventListener('resize',resize);
 resize();draw();
 
 /* TYPEWRITER */
-const phrases=['Senior DevOps Engineer','Cloud Architect','DevSecOps Lead','Infrastructure Engineer','Site Reliability Engineer'];
+const phrases=['Senior DevOps Engineer','Senior Cloud Engineer','Senior Infrastructure Engineer','Senior Site Reliability Engineer'];
 let pi=0,ci=0,del=false,el=document.getElementById('tw');
 function type(){
   const p=phrases[pi];
