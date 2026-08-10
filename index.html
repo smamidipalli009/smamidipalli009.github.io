@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Siva Mamidipalli — DevOps & Cloud Engineer</title>
+<title>Siva Mamidipalli — DevOps, SRE &amp; Platform Engineer | AIOps</title>
+<meta name="description" content="Senior DevOps / SRE / Platform Engineer with 11+ years in cloud infrastructure, DevSecOps, and observability — building toward AIOps, agentic AI, and AI platform engineering."/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
@@ -53,6 +54,11 @@ nav{position:fixed;top:0;width:100%;background:rgba(10,14,23,0.93);backdrop-filt
 .mbox.p::before{background:#7c3aed;}
 .mval{font-family:'JetBrains Mono',monospace;font-size:1.6rem;font-weight:600;color:#fff;}
 .mlabel{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+.mpillar{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;opacity:0.75;}
+.mbox.c .mpillar{color:var(--cyan);}
+.mbox.g .mpillar{color:var(--green);}
+.mbox.a .mpillar{color:var(--amber);}
+.mbox.p .mpillar{color:#a78bfa;}
 .btns{display:flex;gap:1rem;flex-wrap:wrap;}
 .btn{padding:10px 24px;border-radius:6px;font-size:13px;font-weight:500;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;transition:all 0.2s;cursor:pointer;border:none;display:inline-block;}
 .btn-p{background:var(--cyan);color:#0a0e17;}
@@ -117,6 +123,31 @@ section{padding:5rem 2.5rem;max-width:1200px;margin:0 auto;position:relative;z-i
 .tbullets{list-style:none;}
 .tbullets li{font-size:13px;color:var(--text2);padding:3px 0 3px 1rem;position:relative;line-height:1.6;}
 .tbullets li::before{content:'›';position:absolute;left:0;color:var(--green);font-size:14px;}
+
+/* ROADMAP */
+.rmap{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+.ritem{position:relative;}
+.rnode{width:8px;height:8px;border-radius:50%;margin-bottom:0.9rem;}
+.rnode.c{background:var(--cyan);box-shadow:0 0 0 4px rgba(0,212,255,0.12);}
+.rnode.g{background:var(--green);box-shadow:0 0 0 4px rgba(0,255,136,0.12);}
+.rnode.a{background:var(--amber);box-shadow:0 0 0 4px rgba(255,179,71,0.12);}
+.rnode.p{background:#7c3aed;box-shadow:0 0 0 4px rgba(124,58,237,0.12);}
+.ritem::after{content:'';position:absolute;top:4px;left:8px;width:100%;height:1px;background:var(--border);}
+.ritem:last-child::after{display:none;}
+.rcard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.25rem;height:100%;transition:border-color 0.2s;}
+.rcard:hover{border-color:var(--border2);}
+.rcard-top{display:flex;flex-direction:column;gap:6px;margin-bottom:0.6rem;}
+.rphase{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;}
+.rtag{font-size:14px;font-weight:600;color:#fff;}
+.rtag.c{color:var(--cyan);}
+.rtag.g{color:var(--green);}
+.rtag.a{color:var(--amber);}
+.rtag.p{color:#a78bfa;}
+.rcard p{font-size:13px;color:var(--text2);line-height:1.65;}
+@media(max-width:900px){
+  .rmap{grid-template-columns:1fr;}
+  .ritem::after{display:none;}
+}
 
 /* PROJECTS */
 .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
@@ -206,24 +237,25 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
     <li><a href="#about">about</a></li>
     <li><a href="#experience">experience</a></li>
     <li><a href="#projects">projects</a></li>
+    <li><a href="#oss">open_source</a></li>
     <li><a href="#skills">skills</a></li>
+    <li><a href="#roadmap">roadmap</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
-  <a href="resume.pdf" download="Siva_Mamidipalli_Resume.pdf" style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 14px;border:1px solid var(--cyan);border-radius:5px;color:var(--cyan);transition:all 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.1)'" onmouseout="this.style.background='transparent'">↓ resume</a>
   <div class="nav-status"><div class="status-dot"></div>systems_operational</div>
 </nav>
 
 <div class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Senior DevOps &amp; Cloud Security Engineer</div>
+    <div class="hero-eyebrow">Senior DevOps, SRE &amp; Platform Engineer</div>
     <h1>Siva<br><span class="accent">Mamidipalli</span></h1>
     <div class="typewriter" id="tw"><span class="cursor">█</span></div>
     <p class="hero-desc">11+ years engineering resilient infrastructure, securing CI/CD pipelines, and leading DevSecOps transformations across banking, retail, and aviation — from bare-metal datacenters to multi-cloud at scale.</p>
     <div class="metrics">
-      <div class="mbox c"><div class="mval">11+</div><div class="mlabel">Yrs experience</div></div>
-      <div class="mbox g"><div class="mval">99.9%</div><div class="mlabel">Uptime</div></div>
-      <div class="mbox a"><div class="mval">−90%</div><div class="mlabel">Manual effort</div></div>
-      <div class="mbox p"><div class="mval">4.0</div><div class="mlabel">GPA · NEU</div></div>
+      <div class="mbox c"><div class="mval">99.9%</div><div class="mlabel">Prod Uptime</div><div class="mpillar">SRE</div></div>
+      <div class="mbox g"><div class="mval">−90%</div><div class="mlabel">Toil Reduced</div><div class="mpillar">DevOps</div></div>
+      <div class="mbox a"><div class="mval">30+</div><div class="mlabel">Envs Managed</div><div class="mpillar">Platform</div></div>
+      <div class="mbox p"><div class="mval">1000+</div><div class="mlabel">VMs @ Scale</div><div class="mpillar">Hybrid Cloud</div></div>
     </div>
     <div class="btns">
       <a href="#contact" class="btn btn-p">get_in_touch()</a>
@@ -246,7 +278,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
         <div class="drow"><span class="dkey">infra_scale</span><span class="dval">30+ envs · 1000+ VMs</span></div>
         <div class="drow"><span class="dkey">cloud_migration</span><span class="dval c">AWS · Azure · on-prem</span></div>
         <div class="drow"><span class="dkey">security_compliance</span><span class="dval">0 findings · SOX/PCI</span></div>
-        <div class="drow"><span class="dkey">team_led</span><span class="dval a">10 engineers · 3 platforms</span></div>
+        <div class="drow"><span class="dkey">team_led</span><span class="dval a">distributed team · 3 platforms</span></div>
 
         <div class="spark">
           <div class="sb" style="height:35%"></div><div class="sb" style="height:55%"></div>
@@ -267,16 +299,16 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
   <div class="stitle fu">Who I am</div>
   <div class="about-grid fu">
     <div class="about-text">
-      <p>I'm a Senior DevOps Engineer who has spent 11+ years in the trenches of complex IT — owning P1 incidents end-to-end, building secure pipelines from scratch, mentoring distributed teams, and architecting infrastructure that doesn't sleep.</p>
-      <p>My work spans mission-critical environments at Fastenal, FIS, Southwest Airlines, and Hewlett Packard — from VISA payment datacenter racks to AWS cloud migrations for core banking platforms.</p>
+      <p>I'm a Senior DevOps, SRE &amp; Platform Engineer who has spent 11+ years in the trenches of complex IT — owning P1 incidents end-to-end, building secure pipelines from scratch, mentoring distributed teams, and architecting infrastructure that doesn't sleep.</p>
+      <p>My work spans mission-critical environments at Fastenal, FIS, Southwest Airlines, Hewlett Packard, and Adduri Technologies — from VISA payment datacenter racks to AWS cloud migrations for core banking platforms.</p>
       <p>Currently pursuing an MPS in Informatics at Northeastern University (Boston, MA) with a 4.0 GPA. My capstone explores AI-driven infrastructure intelligence — building automated enterprise AI evaluation pipelines integrating LLM APIs with GitHub Actions automation.</p>
-      <p>My near-term goal is to continue leading at the senior level across DevOps, Infrastructure, and SRE. Long-term, I am working toward <strong style="color:var(--cyan)">AI Infrastructure &amp; Platform Architect</strong> — designing the infrastructure layer that powers enterprise AI at scale, combining my deep ops background with the AI-driven systems I am building through my Northeastern capstone.</p>
+      <p>My near-term goal is to continue leading at the senior level across DevOps, SRE, and Platform Engineering. Long-term, I am working toward <strong style="color:var(--cyan)">AI Infrastructure &amp; Platform Architect</strong> — designing the infrastructure layer that powers enterprise AI at scale, combining my deep ops background with the AI-driven systems I am building through my Northeastern capstone.</p>
     </div>
     <div class="apanels">
       <div class="apanel"><h4>// DevSecOps</h4><p>SAST, SCA, DAST integrated into pipelines across Java, .NET, PHP, Node.js. Zero critical findings across all SOX/PCI audits.</p></div>
       <div class="apanel g"><h4>// Cloud Architecture</h4><p>30+ production environments across AWS, Azure, and hybrid on-prem with full observability and quarterly DR coverage.</p></div>
       <div class="apanel a"><h4>// Automation</h4><p>Python and Bash pipelines cut manual security overhead by 70% and operational effort by 90% across all environments.</p></div>
-      <div class="apanel p"><h4>// Leadership</h4><p>Led 10-member distributed DevOps teams delivering Ecommerce, Retail, and Vending Machine platforms end-to-end.</p></div>
+      <div class="apanel p"><h4>// Leadership</h4><p>Led distributed DevOps teams delivering E-commerce, Retail, and Vending Machine platforms end-to-end.</p></div>
     </div>
   </div>
 </section>
@@ -298,11 +330,13 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
           <div class="tbadge">5 yrs · DevSecOps</div>
         </div>
         <ul class="tbullets">
-          <li>End-to-end DevSecOps automation across cloud and hybrid infrastructure — IAM, SSL, DNS, WAF, CDN, APIM, SOX/PCI compliance</li>
-          <li>Integrated SAST (Coverity, SonarQube) and SCA/DAST into CI/CD; zero critical findings across all audits</li>
-          <li>Python/Bash automation reduced manual security overhead by 70% and operational effort by 90%</li>
-          <li>Led 10-member team delivering Ecommerce, Retail, and Vending Machine platforms from kickoff to production</li>
-          <li>24/7 production operations at 99.9% uptime; owned P1 incidents via PagerDuty; zero DR drill failures</li>
+          <li>Built end-to-end infrastructure and application environments across AWS and Azure using Terraform, provisioning 30+ production and non-production environments with automated IAM, SSL, DNS, WAF, CDN, and APIM configuration</li>
+          <li>Designed and maintained CI/CD pipelines across Jenkins, TeamCity, Octopus Deploy, and GitHub Actions, standardizing build, release, and deployment automation for cloud and hybrid workloads</li>
+          <li>Integrated SAST (Coverity, SonarQube) and SCA/DAST into CI/CD, maintaining zero critical findings across all SOX/PCI audits</li>
+          <li>Built and operated monitoring and alerting with Prometheus, Grafana, and the ELK stack across infrastructure and application layers, enabling proactive incident detection</li>
+          <li>Automated SSL certificate lifecycle management across 30+ environments with Python/Bash, cutting manual security overhead by 70% and overall operational effort by 90%</li>
+          <li>Led a distributed DevOps team delivering E-commerce, Retail, and Vending Machine platforms from kickoff to production</li>
+          <li>Ran 24/7 production operations at 99.9% uptime, owned P1 incidents via PagerDuty, and passed 100% of DR drills</li>
         </ul>
       </div>
     </div>
@@ -331,8 +365,8 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
           <div class="tbadge">2.5 yrs · Airline Infra</div>
         </div>
         <ul class="tbullets">
-          <li>24/7 operations for enterprise Java infrastructure (LoneStar) — WebSphere, Tomcat, F5 BIG-IP blue/green deployments</li>
-          <li>TIBCO BW/EMS and IBM MQ HA clusters; CyberArk credential fetching; Venafi SSL lifecycle; JVM tuning via Grafana</li>
+          <li>Operated 24/7 enterprise Java infrastructure (LoneStar) across WebSphere and Tomcat, with blue/green deployments via F5 BIG-IP</li>
+          <li>Managed TIBCO BW/EMS and IBM MQ HA clusters, CyberArk credential fetching, Venafi SSL lifecycle, and JVM tuning monitored via Grafana</li>
         </ul>
       </div>
     </div>
@@ -347,7 +381,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
         </div>
         <ul class="tbullets">
           <li>Administered 1000+ VMs on RHEL with SELinux, firewall rules, kernel tuning, and patching at scale</li>
-          <li>VMware ESXi/vCenter HA/DRS, vMotion live migrations, SAN/NAS storage administration</li>
+          <li>Managed VMware ESXi/vCenter HA/DRS, performed vMotion live migrations, and administered SAN/NAS storage</li>
         </ul>
       </div>
     </div>
@@ -361,8 +395,8 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
           <div class="tbadge">8 mo · Datacenter</div>
         </div>
         <ul class="tbullets">
-          <li>Mission-critical VISA payment datacenter: rack &amp; stack, FC/iSCSI SAN zoning, RAID, VTL backup, firmware management</li>
-          <li>OS hardening on Linux/Windows; Brocade switches, Fortigate firewalls, F5 BIG-IP load balancers</li>
+          <li>Supported a mission-critical VISA payment datacenter, handling rack &amp; stack, FC/iSCSI SAN zoning, RAID, VTL backup, and firmware management</li>
+          <li>Hardened Linux/Windows systems and administered Brocade switches, Fortigate firewalls, and F5 BIG-IP load balancers</li>
         </ul>
       </div>
     </div>
@@ -415,8 +449,46 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
 
 <div class="divline"></div>
 
+<section id="oss">
+  <div class="slabel fu">04 // open source</div>
+  <div class="stitle fu">Public builds &amp; labs</div>
+  <p class="fu" style="color:var(--text2);font-size:14px;margin-top:-1.5rem;margin-bottom:2rem;max-width:680px;">Self-directed projects on GitHub — each one takes a concept from the job (SRE, observability, AppSec) and builds it from zero to a tested, working system.</p>
+  <div class="pgrid fu">
+    <a class="pcard" href="https://github.com/smamidipalli009/aiops-forecast-dashboard" target="_blank" style="display:block;">
+      <div class="pcard-top"><div class="pid">OSS-01 · GitHub</div><div class="pstatus">public</div></div>
+      <div class="ptitle">AIOps Forecast Dashboard</div>
+      <div class="pdesc">Predictive monitoring layer on top of Prometheus + Grafana: a Prophet-based forecasting service projects CPU, memory, and disk usage 6/24/72h ahead, so alerts fire before a threshold is breached instead of after.</div>
+      <div class="ptags"><span class="ptag">Python</span><span class="ptag">Prophet</span><span class="ptag">Prometheus</span><span class="ptag">Pushgateway</span><span class="ptag">Grafana</span><span class="ptag">AIOps</span></div>
+      <div class="pimpact">Reactive → predictive monitoring, hourly retrain loop</div>
+    </a>
+    <a class="pcard" href="https://github.com/smamidipalli009/app-observability-stack" target="_blank" style="display:block;">
+      <div class="pcard-top"><div class="pid">OSS-02 · GitHub</div><div class="pstatus">public</div></div>
+      <div class="ptitle">App Observability Stack</div>
+      <div class="pdesc">SLO-based alerting on a Flask app using multi-window, multi-burn-rate rules — the pattern from the Google SRE Workbook, not a flat "error rate > X%" threshold. 99.9% availability target with real-time error-budget tracking.</div>
+      <div class="ptags"><span class="ptag">SRE</span><span class="ptag">SLO/SLI</span><span class="ptag">Error Budget</span><span class="ptag">Prometheus</span><span class="ptag">Grafana</span><span class="ptag">Docker</span></div>
+      <div class="pimpact">Fast burns page in &lt;2 min, slow burns just ticket</div>
+    </a>
+    <a class="pcard" href="https://github.com/smamidipalli009/multi-language-appsec-pipeline" target="_blank" style="display:block;">
+      <div class="pcard-top"><div class="pid">OSS-03 · GitHub</div><div class="pstatus">public</div></div>
+      <div class="ptitle">Multi-Language AppSec Pipeline</div>
+      <div class="pdesc">End-to-end SAST + SCA + DAST across five languages (Python, Java, Go, JS, TS), each independently triggerable. CodeQL for source scanning, Trivy for image/dependency CVEs and SBOM, OWASP ZAP for runtime DAST, results surfaced in the Security tab.</div>
+      <div class="ptags"><span class="ptag">CodeQL</span><span class="ptag">Trivy</span><span class="ptag">OWASP ZAP</span><span class="ptag">SBOM</span><span class="ptag">GitHub Actions</span><span class="ptag">GHCR</span></div>
+      <div class="pimpact">98 workflow runs · 538 code scanning alerts triaged</div>
+    </a>
+    <a class="pcard" href="https://github.com/smamidipalli009/windows-observability-stack" target="_blank" style="display:block;">
+      <div class="pcard-top"><div class="pid">OSS-04 · GitHub</div><div class="pstatus">public</div></div>
+      <div class="ptitle">Windows Observability Stack</div>
+      <div class="pdesc">Prometheus + Grafana + Alertmanager monitoring for a Windows host, built dashboard-up rather than importing a community template. Four alert rules with tested Slack + Email notification routing — verified end-to-end, not just "configured."</div>
+      <div class="ptags"><span class="ptag">Prometheus</span><span class="ptag">Grafana</span><span class="ptag">Alertmanager</span><span class="ptag">windows_exporter</span><span class="ptag">Slack</span></div>
+      <div class="pimpact">Detects exhaustion / host-down in 2–10 min, alerts verified live</div>
+    </a>
+  </div>
+</section>
+
+<div class="divline"></div>
+
 <section id="skills">
-  <div class="slabel fu">04 // skills</div>
+  <div class="slabel fu">05 // skills</div>
   <div class="stitle fu">Technical stack</div>
   <div class="sgrid fu">
     <div class="spanel">
@@ -441,7 +513,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
     </div>
     <div class="spanel">
       <div class="spanel-hdr"><span>📊</span><span class="spanel-title">observability_data</span></div>
-      <div class="chips"><span class="chip">AppDynamics</span><span class="chip">LogicMonitor</span><span class="chip">ELK Stack</span><span class="chip">PagerDuty</span><span class="chip">Grafana</span><span class="chip">Oracle</span><span class="chip">Snowflake</span><span class="chip">Tableau</span><span class="chip">Power BI</span></div>
+      <div class="chips"><span class="chip">AppDynamics</span><span class="chip">LogicMonitor</span><span class="chip">Prometheus</span><span class="chip">ELK Stack</span><span class="chip">PagerDuty</span><span class="chip">Grafana</span><span class="chip">Oracle</span><span class="chip">Snowflake</span><span class="chip">Tableau</span><span class="chip">Power BI</span></div>
     </div>
     <div class="spanel">
       <div class="spanel-hdr"><span>💻</span><span class="spanel-title">scripting_languages</span></div>
@@ -456,10 +528,46 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
 
 <div class="divline"></div>
 
+<section id="roadmap">
+  <div class="slabel fu">06 // roadmap</div>
+  <div class="stitle fu">Where I'm headed</div>
+  <p class="fu" style="color:var(--text2);font-size:14px;margin-top:-1.5rem;margin-bottom:2.5rem;max-width:680px;">11+ years of keeping infrastructure alive taught me where the next decade of Ops is going. Here's the direction I'm building toward, on top of the DevOps/SRE foundation above.</p>
+  <div class="rmap fu">
+    <div class="ritem">
+      <div class="rnode c"></div>
+      <div class="rcard">
+        <div class="rcard-top"><span class="rphase">now</span><span class="rtag c">AIOps &amp; Predictive Observability</span></div>
+        <p>Going deeper on ML-driven forecasting and anomaly detection so monitoring predicts incidents instead of just reporting them — the idea behind the AIOps Forecast Dashboard project above.</p>
+      </div>
+    </div>
+    <div class="ritem">
+      <div class="rnode g"></div>
+      <div class="rcard">
+        <div class="rcard-top"><span class="rphase">next</span><span class="rtag g">Agentic AI for Operations</span></div>
+        <p>Designing AI agents that reason over telemetry and incident context, propose root causes, and execute remediation steps with human-in-the-loop approval — moving from dashboards that inform to agents that act.</p>
+      </div>
+    </div>
+    <div class="ritem">
+      <div class="rnode a"></div>
+      <div class="rcard">
+        <div class="rcard-top"><span class="rphase">then</span><span class="rtag a">No-Code / Low-Code Orchestration</span></div>
+        <p>Using workflow tools like n8n to wire AI agents into ITSM, monitoring, and notification systems — so automation is composable and auditable, not another one-off script.</p>
+      </div>
+    </div>
+    <div class="ritem">
+      <div class="rnode p"></div>
+      <div class="rcard">
+        <div class="rcard-top"><span class="rphase">future</span><span class="rtag p">AI Platform Engineering</span></div>
+        <p>Building the governance, guardrails, and platform tooling to run agentic systems safely and reliably in production — the long-term goal behind the AI Infrastructure &amp; Platform Architect direction mentioned above.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <div class="divline"></div>
 
 <section id="certifications">
-  <div class="slabel fu">05 // certifications</div>
+  <div class="slabel fu">07 // certifications</div>
   <div class="stitle fu">Certifications</div>
   <div class="agrid fu">
     <div class="acard"><div class="aicon">❄️</div><div><div class="atitle">SnowPro Core Associate</div><div class="aorg">Snowflake · Certified</div></div></div>
@@ -470,7 +578,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
 </section>
 
 <section id="education">
-  <div class="slabel fu">06 // education</div>
+  <div class="slabel fu">08 // education</div>
   <div class="stitle fu">Academic background</div>
   <div class="egrid fu">
     <div class="ecard">
@@ -491,7 +599,7 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
 <div class="divline"></div>
 
 <section id="awards">
-  <div class="slabel fu">07 // recognition</div>
+  <div class="slabel fu">09 // recognition</div>
   <div class="stitle fu">Awards &amp; achievements</div>
   <div class="agrid fu">
     <div class="acard"><div class="aicon">🏆</div><div><div class="atitle">Multiple Spot Awards</div><div class="aorg">Fastenal India · 2019 – 2024</div></div></div>
@@ -504,11 +612,11 @@ footer{text-align:center;padding:2rem;border-top:1px solid var(--border);font-fa
 <div class="divline"></div>
 
 <section id="contact">
-  <div class="slabel fu">08 // contact</div>
+  <div class="slabel fu">10 // contact</div>
   <div class="stitle fu">Get in touch</div>
   <div class="cgrid fu">
     <div class="cblurb">
-      <p>Open to Senior DevOps, Infrastructure, and SRE roles. Actively building toward AI Infrastructure &amp; Platform Architecture as a long-term career direction.</p>
+      <p>Open to Senior DevOps, SRE, and Platform Engineering roles. Actively building toward AI Infrastructure &amp; Platform Architect as a long-term career direction.</p>
       <p>Based in Boston, MA. Reach out via email or connect on LinkedIn.</p>
     </div>
     <div class="clinks">
