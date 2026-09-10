@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siva Mamidipalli — Senior DevOps &amp; SRE Engineer</title>
+<meta name="description" content="Senior DevOps / SRE / Platform Engineer with 11+ years in cloud infrastructure and DevSecOps, building toward AI infrastructure and platform architecture."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#14181c;
+  --surface:#1c2126;
+  --text:#e8e5dd;
+  --muted:#8f9aa3;
+  --line:#2a3038;
+  --accent:#5fae9b;
+  --accent-soft:rgba(95,174,155,0.12);
+  --rust:#d98f5c;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  font-size:16px;
+}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.wrap{max-width:760px;margin:0 auto;padding:0 1.5rem;}
+
+/* NAV */
+nav{padding:1.5rem 0;}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;}
+.nav-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;}
+.nav-links{display:flex;gap:1.75rem;font-size:0.88rem;}
+.nav-links a{color:var(--text);}
+.nav-links a:hover{color:var(--accent);text-decoration:none;}
+
+/* HERO */
+.hero{padding:2.5rem 0 4rem;}
+.hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,5vw,3.1rem);line-height:1.12;max-width:14ch;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-sub{margin-top:1.25rem;font-size:1.08rem;color:var(--muted);max-width:52ch;}
+.hero-meta{margin-top:1.75rem;display:flex;gap:1.75rem;flex-wrap:wrap;font-size:0.88rem;color:var(--muted);}
+.hero-cta{margin-top:2rem;display:flex;gap:0.9rem;flex-wrap:wrap;}
+.btn{display:inline-block;padding:0.65rem 1.3rem;border-radius:3px;font-size:0.9rem;font-weight:500;}
+.btn-solid{background:var(--accent);color:#14181c;}
+.btn-solid:hover{background:#79c1af;transform:translateY(-1px);text-decoration:none;}
+.btn-line{border:1px solid var(--line);color:var(--text);}
+.btn-line:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
+
+/* STATS STRIP */
+.stats{margin-top:2.75rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);}
+.stat{padding:1.1rem 0.5rem 0 0;}
+.stat:not(:first-child){padding-left:1.25rem;border-left:1px solid var(--line);}
+.stat-num{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;color:var(--rust);line-height:1;}
+.stat-label{margin-top:0.35rem;font-size:0.78rem;color:var(--muted);}
+
+/* SECTION SHELL */
+section{padding:3.5rem 0;border-top:1px solid var(--line);}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem;gap:1rem;flex-wrap:wrap;}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.55rem;}
+.section-note{font-size:0.9rem;color:var(--muted);max-width:38ch;text-align:right;}
+
+/* FEATURED WORK */
+.case{display:grid;grid-template-columns:52px 1fr;gap:1.25rem;margin-bottom:2.5rem;}
+.case:last-child{margin-bottom:0;}
+.case-index{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;color:var(--rust);line-height:1;}
+.case-title{font-weight:600;font-size:1.08rem;margin-bottom:0.4rem;}
+.case-org{color:var(--muted);font-weight:400;font-size:0.85rem;}
+.case p{color:var(--text);max-width:58ch;font-size:0.96rem;}
+.case-tags{margin-top:0.75rem;display:flex;flex-wrap:wrap;gap:0.4rem;}
+.tag{font-size:0.76rem;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0.15rem 0.55rem;}
+.impact{margin-top:0.75rem;font-size:0.85rem;font-weight:600;color:var(--accent);}
+.impact::before{content:'Impact — ';font-weight:500;color:var(--muted);}
+
+/* GITHUB PROJECTS */
+.repo{display:grid;grid-template-columns:52px 1fr;gap:1.25rem;margin-bottom:2rem;}
+.repo:last-child{margin-bottom:0;}
+.repo-index{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;color:var(--rust);line-height:1;}
+.repo-title{font-weight:600;font-size:1.02rem;color:var(--text);}
+.repo-title:hover{color:var(--accent);}
+.repo p{font-size:0.92rem;color:var(--text);max-width:56ch;margin-top:0.35rem;}
+.repo-link{font-size:0.8rem;color:var(--accent);font-weight:500;margin-top:0.5rem;display:inline-block;}
+
+/* EXPERIENCE (compact) */
+.job{display:grid;grid-template-columns:150px 1fr;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--line);}
+.job:last-child{border-bottom:none;}
+.job-dates{font-size:0.82rem;color:var(--muted);padding-top:0.15rem;}
+.job-title{font-weight:600;font-size:0.96rem;}
+.job-org{color:var(--muted);font-size:0.86rem;}
+.job-note{font-size:0.88rem;color:var(--text);margin-top:0.3rem;max-width:56ch;}
+.job-project{margin-top:1rem;padding-left:1rem;border-left:2px solid var(--line);}
+.job-project + .job-project{margin-top:1.25rem;}
+.job-project .case-title{font-size:0.95rem;margin-bottom:0.35rem;font-weight:600;}
+.job-project p{font-size:0.88rem;margin-top:0;color:var(--text);max-width:56ch;}
+
+/* SKILLS */
+.skill-row{display:flex;gap:1.25rem;padding:0.7rem 0;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.skill-row:last-child{border-bottom:none;}
+.skill-label{flex:0 0 170px;font-weight:600;font-size:0.9rem;}
+.skill-values{flex:1;min-width:220px;font-size:0.9rem;color:var(--muted);}
+
+/* CREDENTIALS */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.cred-col h3{font-size:0.82rem;color:var(--muted);font-weight:600;margin-bottom:0.6rem;}
+.cred-col .item{font-size:0.9rem;margin-bottom:0.55rem;}
+.cred-col .item .sub{color:var(--muted);font-size:0.82rem;}
+
+/* FOOTER */
+footer{padding:3.5rem 0 4.5rem;}
+footer h2{margin-bottom:0.9rem;}
+footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
+.footer-links{margin-top:1.5rem;display:flex;gap:2rem;flex-wrap:wrap;font-size:0.94rem;font-weight:500;}
+
+@media(max-width:640px){
+  .nav-links{display:none;}
+  .case{grid-template-columns:32px 1fr;}
+  .job{grid-template-columns:1fr;gap:0.15rem;}
+  .repo{grid-template-columns:32px 1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);row-gap:1.1rem;}
+  .stat:nth-child(3){padding-left:0;border-left:none;}
+  .skill-label{flex-basis:100%;}
+  .cred-grid{grid-template-columns:1fr;gap:1.5rem;}
+  .section-note{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Siva Mamidipalli</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#github">GitHub</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero wrap">
+  <h1>Siva Mamidipalli</h1>
+  <p class="hero-sub">11+ years across Infrastructure, Automation, Cloud, CI/CD, and SRE — running production systems for banking, retail, and airline platforms. Now building toward AI Infrastructure &amp; Platform Engineering.</p>
+  <div class="hero-meta">
+    <span>Boston, MA</span>
+    <span>Northeastern University, MPS Informatics</span>
+    <span>Open to Senior DevOps / SRE / Platform roles</span>
+  </div>
+  <div class="hero-cta">
+    <a class="btn btn-solid" href="#experience">See the work</a>
+    <a class="btn btn-line" href="#contact">Get in touch</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">11+</div><div class="stat-label">Years in production infra</div></div>
+    <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Uptime maintained</div></div>
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Environments run</div></div>
+    <div class="stat"><div class="stat-num">−90%</div><div class="stat-label">Toil cut through automation</div></div>
+  </div>
+</div>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <div class="section-note">How I got here, in reverse — with the work that came out of each role.</div>
+    </div>
+
+    <div class="job">
+      <div class="job-dates">Apr 2026 – Jun 2026</div>
+      <div>
+        <div class="job-title">MPS Capstone — AI-Driven Infrastructure Intelligence</div>
+        <div class="job-org">Northeastern University · industry-sponsored research initiative</div>
+        <div class="job-project">
+          <p>Built an automated enterprise AI evaluation pipeline integrating multiple LLM APIs with GitHub Actions, and a configurable scoring architecture using semantic-similarity matching and structured output parsing.</p>
+          <div class="case-tags"><span class="tag">LLM APIs</span><span class="tag">GitHub Actions</span><span class="tag">Semantic Similarity</span></div>
+          <div class="impact">Production-ready evaluation pipeline for a university research initiative</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-dates">Aug 2019 – Nov 2024</div>
+      <div>
+        <div class="job-title">IT Senior DevOps Engineer</div>
+        <div class="job-org">Fastenal, Bangalore</div>
+        <div class="job-note">Owned CI/CD, cloud infrastructure, and DevSecOps across 30+ environments; led a distributed team through production.</div>
+        <div class="job-project">
+          <div class="case-title">Multi-cloud production infrastructure</div>
+          <p>Architected and ran 30+ production environments across AWS, Azure, and on-prem with full observability via AppDynamics and ELK. Automated 50+ recurring operations — SSL renewals, Oracle upgrades — via Ansible.</p>
+          <div class="case-tags"><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">AppDynamics</span><span class="tag">ELK</span></div>
+          <div class="impact">99.9% uptime, 90% less manual ops effort</div>
+        </div>
+        <div class="job-project">
+          <div class="case-title">DevSecOps pipeline automation</div>
+          <p>Built Python and Bash automation to trigger Tenable.io scans, ingest vulnerabilities, and aggregate SAST/SCA results across Dev, QA, UAT, and Prod — replacing a manual security review process.</p>
+          <div class="case-tags"><span class="tag">Python</span><span class="tag">Jenkins</span><span class="tag">Tenable.io</span><span class="tag">SonarQube</span></div>
+          <div class="impact">70% less manual security work, zero audit findings</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-dates">Nov 2018 – Jun 2019</div>
+      <div>
+        <div class="job-title">Senior Systems Engineer</div>
+        <div class="job-org">FIS (Fidelity Information Services), Bangalore</div>
+        <div class="job-note">Architected the AWS migration and compliance baseline for a core banking platform.</div>
+        <div class="job-project">
+          <div class="case-title">Core banking AWS migration</div>
+          <p>Led the migration of a core banking platform to AWS from scratch: multi-tier VPC across availability zones, RDS Multi-AZ with encryption, ElastiCache, and bastion-hosted access, alongside a full PCI-DSS compliance blueprint with CloudTrail auditing.</p>
+          <div class="case-tags"><span class="tag">AWS VPC</span><span class="tag">RDS</span><span class="tag">ElastiCache</span><span class="tag">CloudTrail</span><span class="tag">PCI-DSS</span></div>
+          <div class="impact">Zero-downtime migration, full PCI-DSS compliance</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-dates">Feb 2016 – Oct 2018</div>
+      <div>
+        <div class="job-title">Technical Specialist</div>
+        <div class="job-org">Softtek · client Southwest Airlines, Bangalore</div>
+        <div class="job-note">Ran 24/7 enterprise Java infrastructure with blue/green deployments and MQ clustering.</div>
+      </div>
+    </div>
+    <div class="job">
+      <div class="job-dates">Aug 2014 – Oct 2015</div>
+      <div>
+        <div class="job-title">Software Engineer</div>
+        <div class="job-org">Hewlett Packard, Bangalore</div>
+        <div class="job-note">Administered 1,000+ RHEL VMs and VMware ESXi/vCenter clusters at scale.</div>
+      </div>
+    </div>
+    <div class="job">
+      <div class="job-dates">Dec 2013 – Aug 2014</div>
+      <div>
+        <div class="job-title">System Administrator</div>
+        <div class="job-org">Adduri Technologies · client VISA, Chennai</div>
+        <div class="job-note">Supported a mission-critical payment datacenter — SAN, RAID, backup, and hardening.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="github">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>GitHub projects</h2>
+      <div class="section-note">Self-directed builds — same instincts as the day job, applied on my own time.</div>
+    </div>
+    <div class="repo">
+      <div class="repo-index">01</div>
+      <div>
+        <a class="repo-title" href="https://github.com/smamidipalli009/aiops-forecast-dashboard" target="_blank">AIOps Forecast Dashboard</a>
+        <p>Prophet-based forecasting on Prometheus/Grafana that predicts CPU, memory, and disk pressure 6–72 hours ahead, so alerts fire before a threshold is breached.</p>
+        <div class="case-tags"><span class="tag">Python</span><span class="tag">Prophet</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
+        <div class="impact">Predictive alerts before threshold breach</div>
+        <a class="repo-link" href="https://github.com/smamidipalli009/aiops-forecast-dashboard" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+    <div class="repo">
+      <div class="repo-index">02</div>
+      <div>
+        <a class="repo-title" href="https://github.com/smamidipalli009/app-observability-stack" target="_blank">App Observability Stack</a>
+        <p>SLO-based, multi-burn-rate alerting on a Flask app — the Google SRE Workbook pattern instead of a flat error-rate threshold — with live error-budget tracking.</p>
+        <div class="case-tags"><span class="tag">SRE</span><span class="tag">SLO/SLI</span><span class="tag">Prometheus</span><span class="tag">Docker</span></div>
+        <div class="impact">Fast burns page in under 2 minutes</div>
+        <a class="repo-link" href="https://github.com/smamidipalli009/app-observability-stack" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+    <div class="repo">
+      <div class="repo-index">03</div>
+      <div>
+        <a class="repo-title" href="https://github.com/smamidipalli009/multi-language-appsec-pipeline" target="_blank">Multi-Language AppSec Pipeline</a>
+        <p>End-to-end SAST + SCA + DAST across five languages, unified in one GitHub Actions workflow — CodeQL, Trivy, and OWASP ZAP with results in the Security tab.</p>
+        <div class="case-tags"><span class="tag">CodeQL</span><span class="tag">Trivy</span><span class="tag">OWASP ZAP</span><span class="tag">GitHub Actions</span></div>
+        <div class="impact">538 code-scanning alerts triaged across 98 workflow runs</div>
+        <a class="repo-link" href="https://github.com/smamidipalli009/multi-language-appsec-pipeline" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+    <div class="repo">
+      <div class="repo-index">04</div>
+      <div>
+        <a class="repo-title" href="https://github.com/smamidipalli009/windows-observability-stack" target="_blank">Windows Observability Stack</a>
+        <p>Prometheus, Grafana, and Alertmanager monitoring for a Windows host, built dashboard-up with verified Slack and email alert routing.</p>
+        <div class="case-tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span></div>
+        <div class="impact">Alerts verified live, end to end</div>
+        <a class="repo-link" href="https://github.com/smamidipalli009/windows-observability-stack" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <div class="section-note">The toolkit behind the work above.</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Cloud &amp; infra</div>
+      <div class="skill-values">AWS, Azure, Terraform, Ansible, Docker, Kubernetes, VMware</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">CI/CD</div>
+      <div class="skill-values">Jenkins, GitHub Actions, Azure DevOps, CodeQL, OWASP ZAP</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">PKI &amp; security</div>
+      <div class="skill-values">Enterprise PKI, X.509, Certificate Authorities, Certificate Lifecycle Management, CRL/OCSP, SSL/TLS, Venafi, AppViewX, DigiCert, Microsoft AD CS, HSM / Key Vault-backed keys, HashiCorp Vault, CyberArk, SSH Key Management, PCI-DSS, SOX, SonarQube, Trivy, OPA, Vulnerability Management, Tenable.io, Tenable One, SAST/DAST/SCA</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Observability</div>
+      <div class="skill-values">Prometheus, Grafana, ELK Stack, AppDynamics, PagerDuty</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Middleware &amp; languages</div>
+      <div class="skill-values">TIBCO, IBM MQ, Kafka, WebSphere, NGINX, Python, Bash, PowerShell, Java</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Education &amp; credentials</h2>
+      <div class="section-note">The formal record, for completeness.</div>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-col">
+        <h3>Education</h3>
+        <div class="item">MPS in Informatics — Northeastern University<div class="sub">Boston, MA · 2025–2026 · GPA 4.0/4.0</div></div>
+        <div class="item">B.E. Electrical &amp; Electronics — Andhra University<div class="sub">India · 2007–2011</div></div>
+      </div>
+      <div class="cred-col">
+        <h3>Certifications</h3>
+        <div class="item">SnowPro Core Associate <span class="sub">— Snowflake</span></div>
+        <div class="item">Apache Airflow 3 Fundamentals <span class="sub">— Astronomer</span></div>
+        <div class="item">OCI AI Foundations Associate <span class="sub">— Oracle</span></div>
+        <div class="item">OCI Foundations Associate <span class="sub">— Oracle</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>Open to Senior DevOps, SRE, and Platform Engineering roles — and building toward AI Infrastructure &amp; Platform Architecture as a long-term direction.</p>
+    <div class="footer-links">
+      <a href="mailto:mamidipalli.si@northeastern.edu">Email</a>
+      <a href="https://www.linkedin.com/in/siva-mamidipalli" target="_blank">LinkedIn</a>
+      <a href="tel:6174486433">(617) 448-6433</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
