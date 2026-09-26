@@ -11,12 +11,12 @@
 :root{
   --bg:#14181c;
   --surface:#1c2126;
-  --text:#e8e5dd;
-  --muted:#8f9aa3;
-  --line:#2a3038;
-  --accent:#5fae9b;
-  --accent-soft:rgba(95,174,155,0.12);
-  --rust:#d98f5c;
+  --text:#f0ede6;
+  --muted:#a9b3bc;
+  --line:#5e646a;
+  --accent:#6fc0ac;
+  --accent-soft:rgba(111,192,172,0.14);
+  --rust:#e2a06e;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -41,22 +41,34 @@ nav .wrap{display:flex;justify-content:flex-end;align-items:center;}
 
 /* HERO */
 .hero{position:relative;overflow:hidden;padding:2.5rem 0 4rem;}
-.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
-.hero-bg svg{width:100%;height:100%;display:block;}
 .hero > .wrap{position:relative;z-index:1;}
 .hero h1{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(2.2rem,5vw,3.1rem);line-height:1.12;max-width:14ch;}
 .hero h1 em{font-style:normal;color:var(--accent);}
 .hero-sub{margin-top:1.25rem;font-size:1.08rem;color:var(--muted);max-width:52ch;}
 .hero-meta{margin-top:1.75rem;display:flex;gap:1.75rem;flex-wrap:wrap;font-size:0.88rem;color:var(--muted);}
 .hero-cta{margin-top:2rem;display:flex;gap:0.9rem;flex-wrap:wrap;}
-.btn{display:inline-block;padding:0.65rem 1.3rem;border-radius:3px;font-size:0.9rem;font-weight:500;}
-.btn-solid{background:var(--accent);color:#14181c;}
-.btn-solid:hover{background:#79c1af;transform:translateY(-1px);text-decoration:none;}
+.btn{display:inline-block;padding:0.65rem 1.3rem;border-radius:3px;font-size:0.9rem;font-weight:500;transition:background 0.2s ease,border-color 0.2s ease,color 0.2s ease,transform 0.2s ease;}
+.btn-solid{background:var(--accent);color:#0d1013;}
+.btn-solid:hover{background:#87ccb9;transform:translateY(-1px);text-decoration:none;}
 .btn-line{border:1px solid var(--line);color:var(--text);}
 .btn-line:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
 
+@keyframes reveal{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.reveal{opacity:0;animation:reveal 0.7s cubic-bezier(.22,.61,.36,1) forwards;}
+.reveal-1{animation-delay:0.05s;}
+.reveal-2{animation-delay:0.2s;}
+.reveal-3{animation-delay:0.35s;}
+.reveal-4{animation-delay:0.5s;}
+.reveal-5{animation-delay:0.65s;}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;animation:none;transform:none;}
+}
+
 /* STATS STRIP */
-.stats{margin-top:2.75rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);}
+.stats{margin-top:2.75rem;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);}
 .stat{padding:1.1rem 0.5rem 0 0;}
 .stat:not(:first-child){padding-left:1.25rem;border-left:1px solid var(--line);}
 .stat-num{font-family:'Fraunces',serif;font-weight:600;font-size:1.7rem;color:var(--rust);line-height:1;}
@@ -77,29 +89,63 @@ h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.55rem;}
 .case p{color:var(--text);max-width:58ch;font-size:0.96rem;}
 .case-tags{margin-top:0.75rem;display:flex;flex-wrap:wrap;gap:0.4rem;}
 .tag{font-size:0.76rem;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:0.15rem 0.55rem;}
+.tag-highlight{color:var(--text);border-color:var(--accent);background:var(--accent-soft);font-weight:500;}
 .impact{margin-top:0.75rem;font-size:0.85rem;font-weight:600;color:var(--accent);}
 .impact::before{content:'Impact — ';font-weight:500;color:var(--muted);}
 
 /* GITHUB PROJECTS */
-.repo{display:grid;grid-template-columns:52px 1fr;gap:1.25rem;margin-bottom:2rem;}
-.repo:last-child{margin-bottom:0;}
-.repo-index{font-family:'Fraunces',serif;font-weight:600;font-size:1.5rem;color:var(--rust);line-height:1;}
-.repo-title{font-weight:600;font-size:1.02rem;color:var(--text);}
-.repo-title:hover{color:var(--accent);}
-.repo p{font-size:0.92rem;color:var(--text);max-width:56ch;margin-top:0.35rem;}
-.repo-link{font-size:0.8rem;color:var(--accent);font-weight:500;margin-top:0.5rem;display:inline-block;}
+.repo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.35rem;align-items:start;}
+.repo{
+  padding:1.4rem 1.4rem 1.5rem;
+  transition:transform 0.2s ease;
+}
+.repo:hover{transform:translateY(-2px);}
+.repo-header{
+  display:flex;align-items:baseline;gap:0.65rem;width:100%;
+  background:none;border:none;padding:0;margin:0;
+  cursor:pointer;text-align:left;font-family:inherit;
+}
+.repo-index{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;color:var(--rust);line-height:1;flex-shrink:0;}
+.repo-title{font-weight:600;font-size:1.02rem;color:var(--text);transition:color 0.2s ease;}
+.repo-header:hover .repo-title,
+.repo.active .repo-title{color:var(--accent);}
+.repo-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.3s ease;}
+.repo.active .repo-body{grid-template-rows:1fr;}
+.repo-body-inner{overflow:hidden;}
+.repo-body-pad{padding-top:0.6rem;}
+.repo p{font-size:0.92rem;color:var(--text);margin-top:0;}
+.repo-link{font-size:0.8rem;color:var(--accent);font-weight:500;margin-top:0.75rem;display:inline-block;}
 
-/* EXPERIENCE (compact) */
-.job{display:grid;grid-template-columns:150px 1fr;gap:1rem;padding:0.9rem 0;border-bottom:1px solid var(--line);}
-.job:last-child{border-bottom:none;}
-.job-dates{font-size:0.82rem;color:var(--muted);padding-top:0.15rem;}
-.job-title{font-weight:600;font-size:0.96rem;}
+/* EXPERIENCE — TIMELINE + ACCORDION */
+
+.exp-list{display:flex;flex-direction:column;}
+.exp-row{border-bottom:1px solid var(--line);}
+.exp-row:last-child{border-bottom:none;}
+.exp-header{
+  width:100%;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  background:none;border:none;padding:1rem 0;cursor:pointer;text-align:left;
+  font-family:inherit;color:var(--text);
+}
+.exp-title{font-weight:600;font-size:0.96rem;transition:color 0.2s ease;}
+.exp-dates{font-size:0.82rem;color:var(--muted);flex-shrink:0;white-space:nowrap;transition:color 0.2s ease;}
+.exp-row.active .exp-title,
+.exp-row.active .exp-dates{color:var(--accent);}
+.exp-header:hover .exp-title,
+.exp-header:hover .exp-dates{color:var(--accent);}
+.exp-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows 0.35s ease;}
+.exp-row.active .exp-body{grid-template-rows:1fr;}
+.exp-body-inner{overflow:hidden;}
+.exp-body-inner-pad{padding-bottom:1.4rem;}
 .job-org{color:var(--muted);font-size:0.86rem;}
 .job-note{font-size:0.88rem;color:var(--text);margin-top:0.3rem;max-width:56ch;}
 .job-project{margin-top:1rem;padding-left:1rem;border-left:2px solid var(--line);}
 .job-project + .job-project{margin-top:1.25rem;}
 .job-project .case-title{font-size:0.95rem;margin-bottom:0.35rem;font-weight:600;}
 .job-project p{font-size:0.88rem;margin-top:0;color:var(--text);max-width:56ch;}
+
+@media(max-width:640px){
+  .exp-header{flex-direction:column;align-items:flex-start;gap:0.15rem;}
+}
 
 /* SKILLS */
 .skill-row{display:flex;gap:1.25rem;padding:0.7rem 0;border-bottom:1px solid var(--line);flex-wrap:wrap;}
@@ -122,10 +168,10 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
 @media(max-width:640px){
   .nav-links{display:none;}
   .case{grid-template-columns:32px 1fr;}
-  .job{grid-template-columns:1fr;gap:0.15rem;}
-  .repo{grid-template-columns:32px 1fr;}
+  .repo-grid{grid-template-columns:1fr;}
   .stats{grid-template-columns:repeat(2,1fr);row-gap:1.1rem;}
   .stat:nth-child(3){padding-left:0;border-left:none;}
+  .stat:nth-child(5){padding-left:0;border-left:none;}
   .skill-label{flex-basis:100%;}
   .cred-grid{grid-template-columns:1fr;gap:1.5rem;}
   .section-note{display:none;}
@@ -145,89 +191,24 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
 </nav>
 
 <div class="hero">
-  <div class="hero-bg">
-    <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="dotgrid" width="42" height="42" patternUnits="userSpaceOnUse">
-          <circle cx="1.2" cy="1.2" r="1.2" fill="var(--line)"/>
-        </pattern>
-      </defs>
-      <rect width="1200" height="600" fill="url(#dotgrid)" opacity="0.35"/>
-
-      <!-- server racks, upper right -->
-      <g stroke="var(--line)" stroke-width="1.4" opacity="0.5">
-        <rect x="920" y="40" width="230" height="230" rx="3" fill="none"/>
-        <line x1="920" y1="76"  x2="1150" y2="76"/>
-        <line x1="920" y1="112" x2="1150" y2="112"/>
-        <line x1="920" y1="148" x2="1150" y2="148"/>
-        <line x1="920" y1="184" x2="1150" y2="184"/>
-        <line x1="920" y1="220" x2="1150" y2="220"/>
-        <circle cx="935" cy="58"  r="2.2" fill="var(--accent)" stroke="none" opacity="0.8"/>
-        <circle cx="935" cy="94"  r="2.2" fill="var(--accent)" stroke="none" opacity="0.6"/>
-        <circle cx="935" cy="130" r="2.2" fill="var(--line)" stroke="none"/>
-        <circle cx="935" cy="166" r="2.2" fill="var(--accent)" stroke="none" opacity="0.6"/>
-        <circle cx="935" cy="202" r="2.2" fill="var(--line)" stroke="none"/>
-      </g>
-
-      <!-- storage, lower right -->
-      <g stroke="var(--line)" stroke-width="1.4" opacity="0.45" fill="none">
-        <ellipse cx="1040" cy="470" rx="60" ry="14"/>
-        <path d="M980,470 L980,510 A60,14 0 0 0 1100,510 L1100,470"/>
-        <ellipse cx="1040" cy="510" rx="60" ry="14"/>
-        <ellipse cx="1040" cy="490" rx="60" ry="14" opacity="0.5"/>
-      </g>
-
-      <!-- network cabling / nodes, left side -->
-      <g opacity="0.55">
-        <g stroke="var(--line)" stroke-width="1.3" fill="none">
-          <path d="M70,120 C130,140 150,190 120,230"/>
-          <path d="M120,230 C90,270 140,300 110,350"/>
-          <path d="M120,230 C170,250 200,220 250,250"/>
-          <path d="M110,350 C150,380 130,420 180,440"/>
-          <path d="M250,250 C290,270 300,310 270,340"/>
-        </g>
-        <g fill="var(--accent)" opacity="0.7">
-          <circle cx="70" cy="120" r="3.5"/>
-          <circle cx="120" cy="230" r="3.5"/>
-          <circle cx="250" cy="250" r="3.5"/>
-        </g>
-        <g fill="var(--line)">
-          <circle cx="110" cy="350" r="3.5"/>
-          <circle cx="180" cy="440" r="3.5"/>
-          <circle cx="270" cy="340" r="3.5"/>
-        </g>
-      </g>
-
-      <!-- chip / automation-AI motif, top center -->
-      <g stroke="var(--line)" stroke-width="1.3" opacity="0.4" fill="none">
-        <rect x="560" y="50" width="56" height="56" rx="4"/>
-        <line x1="588" y1="30"  x2="588" y2="50"/>
-        <line x1="588" y1="106" x2="588" y2="126"/>
-        <line x1="540" y1="78"  x2="560" y2="78"/>
-        <line x1="616" y1="78"  x2="636" y2="78"/>
-        <line x1="572" y1="64" x2="604" y2="64"/>
-        <line x1="572" y1="78" x2="604" y2="78"/>
-        <line x1="572" y1="92" x2="604" y2="92"/>
-      </g>
-    </svg>
-  </div>
   <div class="wrap">
-  <h1>Siva Mamidipalli</h1>
-  <p class="hero-sub">11+ years across Infrastructure, Automation, Cloud, CI/CD, and SRE — running production systems for banking, retail, and airline platforms. Now building toward AI Infrastructure &amp; Platform Engineering.</p>
-  <div class="hero-meta">
+  <h1 class="reveal reveal-1">Siva Mamidipalli</h1>
+  <p class="hero-sub reveal reveal-2">11+ years building and running production infrastructure — cloud, automation, CI/CD, SRE, data centers, and systems administration — across banking, retail, airline, supply chain, e-commerce, and vending environments. Now building toward AI Infrastructure &amp; Platform Engineering.</p>
+  <div class="hero-meta reveal reveal-3">
     <span>Boston, MA</span>
     <span>Northeastern University, MPS Informatics</span>
-    <span>Open to Senior DevOps / SRE / Platform roles</span>
+    <span>Open to Senior DevOps / SRE / Platform / Infra / Systems Admin roles</span>
   </div>
-  <div class="hero-cta">
+  <div class="hero-cta reveal reveal-4">
     <a class="btn btn-solid" href="#experience">See the work</a>
     <a class="btn btn-line" href="#contact">Get in touch</a>
   </div>
-  <div class="stats">
+  <div class="stats reveal reveal-5">
     <div class="stat"><div class="stat-num">11+</div><div class="stat-label">Years in production infra</div></div>
     <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Uptime maintained</div></div>
     <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Environments run</div></div>
     <div class="stat"><div class="stat-num">−90%</div><div class="stat-label">Toil cut through automation</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">On-call support</div></div>
   </div>
   </div>
 </div>
@@ -239,77 +220,141 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
       <div class="section-note">How I got here, in reverse — with the work that came out of each role.</div>
     </div>
 
-    <div class="job">
-      <div class="job-dates">Apr 2026 – Jun 2026</div>
-      <div>
-        <div class="job-title">MPS Capstone — AI-Driven Infrastructure Intelligence</div>
-        <div class="job-org">Northeastern University · industry-sponsored research initiative</div>
-        <div class="job-project">
+    <div class="exp-list">
+      <div class="exp-row" data-job="capstone">
+        <button class="exp-header" type="button">
+          <span class="exp-title">MPS Capstone — AI-Driven Infrastructure Intelligence</span>
+          <span class="exp-dates">Apr 2026 – Jun 2026</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">Northeastern University · industry-sponsored research initiative</div>
+          <div class="job-project">
           <p>Built an automated enterprise AI evaluation pipeline integrating multiple LLM APIs with GitHub Actions, and a configurable scoring architecture using semantic-similarity matching and structured output parsing.</p>
-          <div class="case-tags"><span class="tag">LLM APIs</span><span class="tag">GitHub Actions</span><span class="tag">Semantic Similarity</span></div>
-          <div class="impact">Production-ready evaluation pipeline for a university research initiative</div>
+            <div class="case-tags"><span class="tag">LLM APIs</span><span class="tag">GitHub Actions</span><span class="tag">Semantic Similarity</span></div>
+            <div class="impact">Production-ready evaluation pipeline for a university research initiative</div>
         </div>
+        </div></div></div>
       </div>
-    </div>
 
-    <div class="job">
-      <div class="job-dates">Aug 2019 – Nov 2024</div>
-      <div>
-        <div class="job-title">IT Senior DevOps Engineer</div>
-        <div class="job-org">Fastenal, Bangalore</div>
-        <div class="job-note">Owned CI/CD, cloud infrastructure, and DevSecOps across 30+ environments — spanning SRE, Platform Engineering, and Automation — while leading a distributed team through production.</div>
-        <div class="job-project">
+      <div class="exp-row" data-job="fastenal">
+        <button class="exp-header" type="button">
+          <span class="exp-title">IT Senior DevOps Engineer &amp; Systems Engineer</span>
+          <span class="exp-dates">Aug 2019 – Nov 2024</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">Fastenal, Bangalore</div>
+          <div class="job-note">Owned CI/CD, cloud infrastructure, and DevSecOps across 30+ environments — spanning SRE, Platform Engineering, Systems Engineering, and Automation — while leading a distributed team through production.</div>
+          <div class="job-project">
+          <div class="case-title">Systems engineering — hardware, OS, and containers</div>
+          <p>Owned the stack from the rack up: server hardware provisioning and lifecycle, Windows and Linux OS builds and patching, application installs and tuning, and containerizing workloads onto Docker and Kubernetes alongside the VM fleet.</p>
+            <div class="case-tags"><span class="tag">Server Hardware</span><span class="tag">Windows Server</span><span class="tag">Linux (RHEL/Ubuntu)</span><span class="tag">Docker</span><span class="tag">Kubernetes</span></div>
+            <div class="impact">Single team owning hardware through containers, end to end</div>
+        </div>
+          <div class="job-project">
           <div class="case-title">Multi-cloud production infrastructure</div>
           <p>Architected and ran 30+ production environments across AWS, Azure, and on-prem with full observability via AppDynamics and ELK. Automated 50+ recurring operations — SSL renewals, Oracle upgrades — via Ansible.</p>
-          <div class="case-tags"><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">AppDynamics</span><span class="tag">ELK</span></div>
-          <div class="impact">99.9% uptime, 90% less manual ops effort</div>
+            <div class="case-tags"><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">AppDynamics</span><span class="tag">ELK</span></div>
+            <div class="impact">99.9% uptime, 90% less manual ops effort</div>
         </div>
-        <div class="job-project">
+          <div class="job-project">
           <div class="case-title">DevSecOps pipeline automation</div>
           <p>Built Python and Bash automation to trigger Tenable.io scans, ingest vulnerabilities, and aggregate SAST/SCA results across Dev, QA, UAT, and Prod — replacing a manual security review process.</p>
-          <div class="case-tags"><span class="tag">Python</span><span class="tag">Jenkins</span><span class="tag">Tenable.io</span><span class="tag">SonarQube</span></div>
-          <div class="impact">70% less manual security work, zero audit findings</div>
+            <div class="case-tags"><span class="tag">Python</span><span class="tag">Jenkins</span><span class="tag">Tenable.io</span><span class="tag">SonarQube</span></div>
+            <div class="impact">70% less manual security work, zero audit findings</div>
         </div>
+        </div></div></div>
       </div>
-    </div>
 
-    <div class="job">
-      <div class="job-dates">Nov 2018 – Jun 2019</div>
-      <div>
-        <div class="job-title">Senior Systems Engineer</div>
-        <div class="job-org">FIS (Fidelity Information Services), Bangalore</div>
-        <div class="job-note">Architected the AWS migration and compliance baseline for a core banking platform.</div>
-        <div class="job-project">
+      <div class="exp-row" data-job="fis">
+        <button class="exp-header" type="button">
+          <span class="exp-title">Senior Systems Engineer</span>
+          <span class="exp-dates">Nov 2018 – Jun 2019</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">FIS (Fidelity Information Services), Bangalore</div>
+          <div class="job-note">Architected the AWS migration and compliance baseline for a core banking platform.</div>
+          <div class="job-project">
           <div class="case-title">Core banking AWS migration</div>
           <p>Led the migration of a core banking platform to AWS from scratch: multi-tier VPC across availability zones, RDS Multi-AZ with encryption, ElastiCache, and bastion-hosted access, alongside a full PCI-DSS compliance blueprint with CloudTrail auditing.</p>
-          <div class="case-tags"><span class="tag">AWS VPC</span><span class="tag">RDS</span><span class="tag">ElastiCache</span><span class="tag">CloudTrail</span><span class="tag">PCI-DSS</span></div>
-          <div class="impact">Zero-downtime migration, full PCI-DSS compliance</div>
+            <div class="case-tags"><span class="tag">AWS VPC</span><span class="tag">RDS</span><span class="tag">ElastiCache</span><span class="tag">CloudTrail</span><span class="tag">PCI-DSS</span></div>
+            <div class="impact">Zero-downtime migration, full PCI-DSS compliance</div>
         </div>
+        </div></div></div>
       </div>
-    </div>
 
-    <div class="job">
-      <div class="job-dates">Feb 2016 – Oct 2018</div>
-      <div>
-        <div class="job-title">Technical Specialist</div>
-        <div class="job-org">Softtek · client Southwest Airlines, Bangalore</div>
-        <div class="job-note">Ran 24/7 enterprise Java infrastructure with blue/green deployments and MQ clustering.</div>
+      <div class="exp-row" data-job="softtek">
+        <button class="exp-header" type="button">
+          <span class="exp-title">Technical Specialist</span>
+          <span class="exp-dates">Feb 2016 – Oct 2018</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">Softtek · client Southwest Airlines, Bangalore</div>
+          <div class="job-note">Ran 24/7 enterprise Java infrastructure with blue/green deployments and MQ clustering across a major US airline booking platform.</div>
+          <div class="job-project">
+          <div class="case-title">Certificate lifecycle &amp; credential automation</div>
+          <p>Automated SSL/TLS certificate lifecycle with Venafi and integrated CyberArk for secure credential and key injection across the booking platform, hardening certificate handling across Dev, QA, UAT, and Prod.</p>
+            <div class="case-tags"><span class="tag">Venafi</span><span class="tag">CyberArk</span><span class="tag">SSL/TLS</span><span class="tag">Cert Lifecycle</span></div>
+            <div class="impact">Hardened cert handling across all four environments</div>
+        </div>
+          <div class="job-project">
+          <div class="case-title">Zero-downtime blue/green deployments</div>
+          <p>Engineered zero-downtime blue/green deployments across 3,000+ servers per cycle using Jenkins, Chef, and Nexus, managing artifact promotion through F5 BIG-IP traffic switching, including TLS termination and certificate rollout at the load balancer tier.</p>
+            <div class="case-tags"><span class="tag">Jenkins</span><span class="tag">Chef</span><span class="tag">Nexus</span><span class="tag">F5 BIG-IP</span><span class="tag">Blue/Green</span></div>
+            <div class="impact">Zero-downtime releases across 3,000+ servers per cycle</div>
+        </div>
+          <div class="job-project">
+          <div class="case-title">Web &amp; messaging platform reliability</div>
+          <p>Operated 24/7 web (WebSphere, Tomcat) and messaging (IBM MQ, TIBCO EMS) platforms across 20,000+ app servers, performing JVM tuning and SSL/TLS hardening to maintain reliability SLAs across all four environments.</p>
+            <div class="case-tags"><span class="tag">WebSphere</span><span class="tag">Tomcat</span><span class="tag">IBM MQ</span><span class="tag">TIBCO EMS</span><span class="tag">JVM Tuning</span></div>
+            <div class="impact">Reliability SLAs held across 20,000+ app servers</div>
+        </div>
+        </div></div></div>
       </div>
-    </div>
-    <div class="job">
-      <div class="job-dates">Aug 2014 – Oct 2015</div>
-      <div>
-        <div class="job-title">Software Engineer</div>
-        <div class="job-org">Hewlett Packard, Bangalore</div>
-        <div class="job-note">Administered 1,000+ RHEL VMs and VMware ESXi/vCenter clusters at scale.</div>
+
+      <div class="exp-row" data-job="hp">
+        <button class="exp-header" type="button">
+          <span class="exp-title">Technical Solutions Rep IV</span>
+          <span class="exp-dates">Aug 2014 – Oct 2015</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">Hewlett Packard, Bangalore</div>
+          <div class="job-note">Administered 1,000+ RHEL VMs and VMware ESXi/vCenter clusters at scale across multiple datacenters.</div>
+          <div class="job-project">
+          <div class="case-title">RHEL fleet hardening &amp; uptime</div>
+          <p>Maintained a 99% uptime SLA across 1,000+ VMs on HP ProLiant / RHEL, enforcing SELinux hardening, kernel tuning, OS patching, and firewall policy management.</p>
+            <div class="case-tags"><span class="tag">HP ProLiant</span><span class="tag">RHEL</span><span class="tag">SELinux</span><span class="tag">Kernel Tuning</span><span class="tag">Firewall Policy</span></div>
+            <div class="impact">99% uptime SLA across 1,000+ VMs</div>
+        </div>
+          <div class="job-project">
+          <div class="case-title">VMware clustering &amp; DR</div>
+          <p>Operated VMware ESXi/vCenter with HA/DRS clustering, vMotion live migrations, SAN/NAS storage administration, and DR failover planning across multiple datacenters.</p>
+            <div class="case-tags"><span class="tag">VMware ESXi/vCenter</span><span class="tag">HA/DRS</span><span class="tag">vMotion</span><span class="tag">SAN/NAS</span><span class="tag">DR Failover</span></div>
+            <div class="impact">Resilient multi-datacenter DR posture</div>
+        </div>
+        </div></div></div>
       </div>
-    </div>
-    <div class="job">
-      <div class="job-dates">Dec 2013 – Aug 2014</div>
-      <div>
-        <div class="job-title">System Administrator</div>
-        <div class="job-org">Adduri Technologies · client VISA, Chennai</div>
-        <div class="job-note">Supported a mission-critical payment datacenter — SAN, RAID, backup, and hardening.</div>
+
+      <div class="exp-row" data-job="visa">
+        <button class="exp-header" type="button">
+          <span class="exp-title">Tr Executive</span>
+          <span class="exp-dates">Dec 2013 – Aug 2014</span>
+        </button>
+        <div class="exp-body"><div class="exp-body-inner"><div class="exp-body-inner-pad">
+          <div class="job-org">Adduri Technologies · client VISA, Chennai</div>
+          <div class="job-note">Supported a mission-critical PCI-DSS payment datacenter — full device lifecycle across compute, storage, network, and hardware management layers.</div>
+          <div class="job-project">
+          <div class="case-title">Payment datacenter infrastructure &amp; lifecycle</div>
+          <p>Maintained PCI-DSS compliant datacenter infrastructure for VISA payment processing, managing full device lifecycle across compute, storage, and network fabric layers including FC/iSCSI SAN zoning, RAID, and VTL backup, achieving RPO/RTO targets.</p>
+            <div class="case-tags"><span class="tag">FC/iSCSI SAN</span><span class="tag">RAID</span><span class="tag">VTL Backup</span><span class="tag">RPO/RTO</span><span class="tag">PCI-DSS</span></div>
+            <div class="impact">RPO/RTO targets met across the payment platform</div>
+        </div>
+          <div class="job-project">
+          <div class="case-title">OS hardening &amp; perimeter security</div>
+          <p>Hardened Linux and Windows OS, enforced perimeter security with Fortigate firewalls and F5 BIG-IP, and managed iLO/iDRAC hardware management across the fleet.</p>
+            <div class="case-tags"><span class="tag">Linux/Windows Hardening</span><span class="tag">Fortigate</span><span class="tag">F5 BIG-IP</span><span class="tag">iLO/iDRAC</span></div>
+            <div class="impact">Zero findings across all PCI-DSS audits</div>
+        </div>
+        </div></div></div>
       </div>
     </div>
   </div>
@@ -321,45 +366,55 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
       <h2>GitHub projects</h2>
       <div class="section-note">Self-directed builds — same instincts as the day job, applied on my own time.</div>
     </div>
-    <div class="repo">
-      <div class="repo-index">01</div>
-      <div>
-        <a class="repo-title" href="https://github.com/smamidipalli009/aiops-forecast-dashboard" target="_blank">AIOps Forecast Dashboard</a>
+    <div class="repo-grid">
+    <div class="repo" data-repo="aiops">
+      <button class="repo-header" type="button">
+        <span class="repo-index">01</span>
+        <span class="repo-title">AIOps Forecast Dashboard</span>
+      </button>
+      <div class="repo-body"><div class="repo-body-inner"><div class="repo-body-pad">
         <p>Prophet-based forecasting on Prometheus/Grafana that predicts CPU, memory, and disk pressure 6–72 hours ahead, so alerts fire before a threshold is breached.</p>
         <div class="case-tags"><span class="tag">Python</span><span class="tag">Prophet</span><span class="tag">Prometheus</span><span class="tag">Grafana</span></div>
         <div class="impact">Predictive alerts before threshold breach</div>
         <a class="repo-link" href="https://github.com/smamidipalli009/aiops-forecast-dashboard" target="_blank">View on GitHub →</a>
-      </div>
+      </div></div></div>
     </div>
-    <div class="repo">
-      <div class="repo-index">02</div>
-      <div>
-        <a class="repo-title" href="https://github.com/smamidipalli009/app-observability-stack" target="_blank">App Observability Stack</a>
+    <div class="repo" data-repo="observability">
+      <button class="repo-header" type="button">
+        <span class="repo-index">02</span>
+        <span class="repo-title">App Observability Stack</span>
+      </button>
+      <div class="repo-body"><div class="repo-body-inner"><div class="repo-body-pad">
         <p>SLO-based, multi-burn-rate alerting on a Flask app — the Google SRE Workbook pattern instead of a flat error-rate threshold — with live error-budget tracking.</p>
         <div class="case-tags"><span class="tag">SRE</span><span class="tag">SLO/SLI</span><span class="tag">Prometheus</span><span class="tag">Docker</span></div>
         <div class="impact">Fast burns page in under 2 minutes</div>
         <a class="repo-link" href="https://github.com/smamidipalli009/app-observability-stack" target="_blank">View on GitHub →</a>
-      </div>
+      </div></div></div>
     </div>
-    <div class="repo">
-      <div class="repo-index">03</div>
-      <div>
-        <a class="repo-title" href="https://github.com/smamidipalli009/multi-language-appsec-pipeline" target="_blank">Multi-Language AppSec Pipeline</a>
+    <div class="repo" data-repo="appsec">
+      <button class="repo-header" type="button">
+        <span class="repo-index">03</span>
+        <span class="repo-title">Multi-Language AppSec Pipeline</span>
+      </button>
+      <div class="repo-body"><div class="repo-body-inner"><div class="repo-body-pad">
         <p>End-to-end SAST + SCA + DAST across five languages, unified in one GitHub Actions workflow — CodeQL, Trivy, and OWASP ZAP with results in the Security tab.</p>
         <div class="case-tags"><span class="tag">CodeQL</span><span class="tag">Trivy</span><span class="tag">OWASP ZAP</span><span class="tag">GitHub Actions</span></div>
         <div class="impact">538 code-scanning alerts triaged across 98 workflow runs</div>
         <a class="repo-link" href="https://github.com/smamidipalli009/multi-language-appsec-pipeline" target="_blank">View on GitHub →</a>
-      </div>
+      </div></div></div>
     </div>
-    <div class="repo">
-      <div class="repo-index">04</div>
-      <div>
-        <a class="repo-title" href="https://github.com/smamidipalli009/windows-observability-stack" target="_blank">Windows Observability Stack</a>
+    <div class="repo" data-repo="windows-obs">
+      <button class="repo-header" type="button">
+        <span class="repo-index">04</span>
+        <span class="repo-title">Windows Observability Stack</span>
+      </button>
+      <div class="repo-body"><div class="repo-body-inner"><div class="repo-body-pad">
         <p>Prometheus, Grafana, and Alertmanager monitoring for a Windows host, built dashboard-up with verified Slack and email alert routing.</p>
         <div class="case-tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span></div>
         <div class="impact">Alerts verified live, end to end</div>
         <a class="repo-link" href="https://github.com/smamidipalli009/windows-observability-stack" target="_blank">View on GitHub →</a>
-      </div>
+      </div></div></div>
+    </div>
     </div>
   </div>
 </section>
@@ -375,20 +430,44 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
       <div class="skill-values">AWS, Azure, Terraform, Ansible, Docker, Kubernetes, VMware</div>
     </div>
     <div class="skill-row">
-      <div class="skill-label">CI/CD</div>
-      <div class="skill-values">Jenkins, GitHub Actions, Azure DevOps, CodeQL, OWASP ZAP</div>
+      <div class="skill-label">Systems &amp; OS</div>
+      <div class="skill-values">Windows Server, Linux (RHEL/Ubuntu)</div>
     </div>
     <div class="skill-row">
-      <div class="skill-label">PKI &amp; security</div>
-      <div class="skill-values">Enterprise PKI, X.509, Certificate Authorities, Certificate Lifecycle Management, CRL/OCSP, SSL/TLS, Venafi, AppViewX, DigiCert, Microsoft AD CS, HSM / Key Vault-backed keys, HashiCorp Vault, CyberArk, SSH Key Management, PCI-DSS, SOX, SonarQube, Trivy, OPA, Vulnerability Management, Tenable.io, Tenable One, SAST/DAST/SCA</div>
+      <div class="skill-label">Datacenter &amp; hardware</div>
+      <div class="skill-values">Dell PowerEdge, HP ProLiant, Cisco UCS, Sun Blade &amp; Non-Blade, Server Hardware Provisioning &amp; Lifecycle, iLO/iDRAC/ILOM/CMC</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Storage &amp; DR</div>
+      <div class="skill-values">EMC, NetApp, FC/iSCSI SAN, NAS, RAID, Tape Libraries, VTL Backup, RPO/RTO Planning, DR Failover</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">CI/CD &amp; release</div>
+      <div class="skill-values">Jenkins, GitHub Actions, Azure DevOps, Nexus</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">PKI &amp; credentials</div>
+      <div class="skill-values">Enterprise PKI, X.509, Certificate Authorities, Certificate Lifecycle Management, CRL/OCSP, SSL/TLS, Venafi, AppViewX, DigiCert, Microsoft AD CS, HSM / Key Vault-backed keys, HashiCorp Vault, CyberArk, SSH Key Management</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Security &amp; compliance</div>
+      <div class="skill-values">CodeQL, OWASP ZAP, Checkmarx, Fortigate, PCI-DSS, SOX, SonarQube, Trivy, OPA, Vulnerability Management, Tenable.io, Tenable One, SAST/DAST/SCA</div>
     </div>
     <div class="skill-row">
       <div class="skill-label">Observability</div>
-      <div class="skill-values">Prometheus, Grafana, ELK Stack, AppDynamics, PagerDuty</div>
+      <div class="skill-values">Prometheus, Grafana, ELK Stack, AppDynamics, LogicMonitor, PagerDuty</div>
     </div>
     <div class="skill-row">
-      <div class="skill-label">Middleware &amp; languages</div>
-      <div class="skill-values">TIBCO, IBM MQ, Kafka, WebSphere, NGINX, Python, Bash, PowerShell, Java</div>
+      <div class="skill-label">Middleware</div>
+      <div class="skill-values">TIBCO EMS, IBM MQ, Kafka, WebSphere, Tomcat, NGINX</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Load balancing &amp; networking</div>
+      <div class="skill-values">F5 BIG-IP, F5 GTM/LTM, HAProxy</div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Languages &amp; scripting</div>
+      <div class="skill-values">Python, Bash, PowerShell, Java</div>
     </div>
   </div>
 </section>
@@ -419,7 +498,7 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
 <footer id="contact">
   <div class="wrap">
     <h2>Get in touch</h2>
-    <p>Open to Senior DevOps, SRE, and Platform Engineering roles — and building toward AI Infrastructure &amp; Platform Architecture as a long-term direction.</p>
+    <p>Open to Senior DevOps, SRE, Platform, Infra, and Systems Admin roles — and building toward AI Infrastructure &amp; Platform Architecture as a long-term direction.</p>
     <div class="footer-links">
       <a href="mailto:mamidipalli.si@northeastern.edu">Email</a>
       <a href="https://www.linkedin.com/in/siva-mamidipalli" target="_blank">LinkedIn</a>
@@ -428,5 +507,46 @@ footer p{color:var(--muted);max-width:52ch;font-size:0.96rem;}
   </div>
 </footer>
 
+<script>
+(function(){
+  var rows = document.querySelectorAll('.exp-row');
+
+  function setActive(job){
+    var current = document.querySelector('.exp-row.active');
+    var wasOpen = current && current.getAttribute('data-job') === job;
+
+    rows.forEach(function(r){
+      r.classList.remove('active');
+      var header = r.querySelector('.exp-header');
+      if(header) header.setAttribute('aria-expanded', 'false');
+    });
+
+    if(wasOpen) return;
+
+    var row = document.querySelector('.exp-row[data-job="' + job + '"]');
+    if(row){
+      row.classList.add('active');
+      var header = row.querySelector('.exp-header');
+      if(header) header.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  rows.forEach(function(r){
+    var header = r.querySelector('.exp-header');
+    if(header){
+      header.addEventListener('click', function(){
+        setActive(r.getAttribute('data-job'));
+      });
+    }
+  });
+
+  document.querySelectorAll('.repo-header').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var repo = btn.closest('.repo');
+      if(repo) repo.classList.toggle('active');
+    });
+  });
+})();
+</script>
 </body>
 </html>
